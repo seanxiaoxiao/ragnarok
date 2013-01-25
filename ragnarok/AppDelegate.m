@@ -78,10 +78,10 @@
 	
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
-	navController_.navigationBarHidden = YES;
+	navController_.navigationBarHidden = NO;
 	
 	// set the Navigation Controller as the root view controller
-//	[window_ addSubview:navController_.view];	// Generates flicker.
+	[window_ addSubview:navController_.view];	// Generates flicker.
 	[window_ setRootViewController:navController_];
 	
 	// make main window visible
