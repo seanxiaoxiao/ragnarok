@@ -16,6 +16,7 @@
 {
     CCArray *currentLayers = [[CCDirector sharedDirector] runningScene].children;
     for (int i = 0; i < [currentLayers count]; i++) {
+        NSLog(@"%@", [[currentLayers objectAtIndex:i] class]);
         if ([[currentLayers objectAtIndex:i] isKindOfClass:[StageLayer class]]) {
             return [currentLayers objectAtIndex:i];
         }

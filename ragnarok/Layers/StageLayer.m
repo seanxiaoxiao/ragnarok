@@ -8,6 +8,7 @@
 
 #import "StageLayer.h"
 #import "CCPanZoomController.h"
+#import "StageMap.h"
 
 
 @implementation StageLayer
@@ -32,18 +33,17 @@
 -(id) init
 {
     if((self = [super init])) {
-        CCSprite *background = [CCSprite spriteWithFile:@"stage42.png"];
-        background.anchorPoint = ccp(0,0);        
-
-        [self addChild: background z: -1];
+        StageMap *stageMap = [[StageMap alloc] initWithStageNo:42];
+        stageMap.backgroundSprite.anchorPoint = ccp(0, 0);
+        [self addChild: stageMap.backgroundSprite z:0];
         
         _controller = [[CCPanZoomController controllerWithNode:self] retain];
-        _controller.boundingRect = [background boundingBox];
+        _controller.boundingRect = [stageMap.backgroundSprite boundingBox];
         _controller.zoomOutLimit = _controller.optimalZoomOutLimit;
         _controller.zoomInLimit = 2.0f;
         [_controller enableWithTouchPriority:0 swallowsTouches:NO];
         
-        background.scale = _controller.optimalZoomOutLimit;
+        stageMap.backgroundSprite.scale = _controller.optimalZoomOutLimit;
         
         self.isTouchEnabled = true;
     }

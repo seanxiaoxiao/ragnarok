@@ -8,6 +8,8 @@
 
 #import "StageMap.h"
 #import "UnitSprites.h"
+#import "StageLayer.h"
+#import "Util.h"
 
 @implementation StageMap
 
