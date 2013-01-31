@@ -7,12 +7,12 @@
 //
 
 #import "StageLayer.h"
+#import "CCPanZoomController.h"
 
 
 @implementation StageLayer
 
 @synthesize previousTouch;
-@synthesize stageMap;
 @synthesize spriteDownStay1;
 
 +(CCScene *) scene
@@ -23,8 +23,7 @@
 	// 'layer' is an autorelease object.
 	StageLayer *layer = [StageLayer node];
 	   
-	// add layer as a child to scene
-	[scene addChild: layer];
+    [scene addChild: layer];
 	
 	// return the scene
 	return scene;
@@ -33,17 +32,20 @@
 -(id) init
 {
     if((self = [super init])) {
-        stageMap = [CCTMXTiledMap tiledMapWithTMXFile:@"stage2.tmx"];
-        [self addChild:stageMap];
+        CCSprite *background = [CCSprite spriteWithFile:@"stage42.png"];
+        background.anchorPoint = ccp(0,0);        
 
+        [self addChild: background z: -1];
+        
+        _controller = [[CCPanZoomController controllerWithNode:self] retain];
+        _controller.boundingRect = [background boundingBox];
+        _controller.zoomOutLimit = _controller.optimalZoomOutLimit;
+        _controller.zoomInLimit = 2.0f;
+        [_controller enableWithTouchPriority:0 swallowsTouches:NO];
+        
+        background.scale = _controller.optimalZoomOutLimit;
+        
         self.isTouchEnabled = true;
-
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            [stageMap setScale:2.0];
-        }
-        [self addPlayer];
-//        CCTMXLayer *groundLayer = [map layerNamed:@"bg"];
-
     }
         
     return self;
@@ -58,13 +60,13 @@
     CCSprite *spriteDownStay4 = [CCSprite spriteWithFile:@"132-1.png" rect:CGRectMake(0, 25, 24, 24)];
 
     
-    CCTMXLayer *unitsLayer = [stageMap layerNamed:@"units"];
-    
-    spriteDownStay1.position = CGPointMake(2 * 24 + 10, 8 * 24 + 12);
-    [stageMap addChild:spriteDownStay1 z:[unitsLayer zOrder]];
-
-    spriteDownStay3.position = CGPointMake(2 * 24 + 10, 9 * 24 + 12);
-    [stageMap addChild:spriteDownStay3 z:[unitsLayer zOrder]];
+//    CCTMXLayer *unitsLayer = [stageMap layerNamed:@"units"];
+//    
+//    spriteDownStay1.position = CGPointMake(2 * 24 + 10, 8 * 24 + 12);
+//    [stageMap addChild:spriteDownStay1 z:[unitsLayer zOrder]];
+//
+//    spriteDownStay3.position = CGPointMake(2 * 24 + 10, 9 * 24 + 12);
+//    [stageMap addChild:spriteDownStay3 z:[unitsLayer zOrder]];
 
     CCAnimation* animation;
     
@@ -121,79 +123,47 @@
 
 
 #pragma mark TouchesMethod
-
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (void) showMenu
 {
-}
-
-- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [touches anyObject];
+    if (menu != nil) {
+        return;
+    }
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    [CCMenuItemFont setFontSize:28];
     
-    CGPoint touchLocation = [touch locationInView: [touch view]];
-    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+    CCMenuItem *exitStage = [CCMenuItemFont itemWithString:@"Exit Stage" block:^(id sender) {
+        [[CCDirector sharedDirector] popScene];
+    }];
 
-    if(touchLocation.x < previousTouch.x)
-    {
-        [self slideMapRight:true];
-    }
-    else
-    {
-        [self slideMapRight:false];
-    }
+    CCMenuItem *endTurn = [CCMenuItemFont itemWithString:@"End Turn" block:^(id sender) {
+    }];
     
-    if (touchLocation.y < previousTouch.y)
-    {
-        [self slideMapDown:true];
-    }
-    else
-    {
-        [self slideMapDown:false];
-    }
+    CCMenuItem *closeMenu = [CCMenuItemFont itemWithString:@"Close Menu" block:^(id sender) {
+        if (menu != nil) {
+            [self removeChild:menu cleanup:YES];
+            menu = nil;
+        }
+    }];
 
-    previousTouch = touchLocation;
+    menu = [[CCMenu menuWithItems:exitStage, endTurn, closeMenu, nil] autorelease];
+    
+    [menu alignItemsVertically];
+    [menu setPosition:ccp( size.width / 3, size.height / 3 - 50)];
+    
+    [self addChild:menu];
     
 }
 
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (CGPoint)convertTouchToNodeSpace:(UITouch *)touch
 {
+    CGPoint point = [touch locationInView: [touch view]];
+    point = [[CCDirector sharedDirector] convertToGL: point];
+    return [self convertToNodeSpace:point];
 }
 
-
-- (void)slideMapRight:(bool)isRight
+- (void) closeMenu
 {
-    float posUpdate;
     
-    if(isRight)
-    {
-        posUpdate = 5.0f;
-    }
-    else
-    {
-        posUpdate = -5.0f;
-    }
-    
-    CGPoint pos = stageMap.position;
-    pos.x -= posUpdate;
-    stageMap.position = ccp(pos.x, stageMap.position.y);
-}
-
-- (void)slideMapDown:(bool)isDown
-{
-    float posUpdate;
-    
-    if(isDown)
-    {
-        posUpdate = 5.0f;
-    }
-    else
-    {
-        posUpdate = -5.0f;
-    }
-    
-    CGPoint pos = stageMap.position;
-    pos.y -= posUpdate;
-    stageMap.position = ccp(stageMap.position.x, pos.y);
 }
 
 

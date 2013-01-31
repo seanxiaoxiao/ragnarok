@@ -9,5 +9,14 @@
 #import "Character.h"
 
 @implementation Character
+@synthesize roundFinish;
+
+- (void) finishRound {
+    roundFinish = true;
+}
+
+- (void) startRound {
+    roundFinish = false;
+}
 
 @end

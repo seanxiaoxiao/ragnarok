@@ -24,6 +24,7 @@ enum Direction {
 @property (nonatomic, assign) int experience;
 @property (nonatomic, assign) int rowAt;
 @property (nonatomic, assign) int colAt;
+@property (nonatomic, assign) BOOL roundFinish;
 
 - (void) levelUp;
 
@@ -32,6 +33,10 @@ enum Direction {
 - (void) speak:(NSString *)text;
 
 - (void) faceTo:(enum Direction) direction;
+
+- (void) finishRound;
+
+- (void) startRound;
 
 - (void) move;
 

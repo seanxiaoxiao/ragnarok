@@ -145,11 +145,15 @@
 		0097F31316AB6BFF00302284 /* stage42.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0097F31116AB6BFF00302284 /* stage42.tmx */; };
 		0097F31416AB6BFF00302284 /* stage42.png in Resources */ = {isa = PBXBuildFile; fileRef = 0097F31216AB6BFF00302284 /* stage42.png */; };
 		00CD7C0716B30B070031D83C /* UnitSprites.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7C0616B30B070031D83C /* UnitSprites.m */; };
+		00CD7C0C16B347DF0031D83C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7C0B16B347DF0031D83C /* Constants.m */; };
 		00D60D3C16AF625F0051F30A /* UnitCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D3B16AF625F0051F30A /* UnitCategory.m */; };
 		00D60D3F16AF639D0051F30A /* Footman.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D3E16AF639D0051F30A /* Footman.m */; };
 		00D60D4216AF649F0051F30A /* Cavalier.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D4116AF649F0051F30A /* Cavalier.m */; };
 		00D60D4516AF64BA0051F30A /* Archer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D4416AF64BA0051F30A /* Archer.m */; };
 		00D60D4916AF698F0051F30A /* Topography.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D4816AF698F0051F30A /* Topography.m */; };
+		00D6FA9116BAFAA300B65F81 /* movabletile.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D6FA9016BAFAA300B65F81 /* movabletile.png */; };
+		00D6FAA416BB10B400B65F81 /* CCPanZoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6FAA316BB10B400B65F81 /* CCPanZoomController.m */; };
+		00D6FAA816BB215500B65F81 /* StageMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6FAA716BB215500B65F81 /* StageMap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -431,8 +435,10 @@
 		0097F30F16AB2BC100302284 /* stage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage2.png; path = Resources/stages/stage2.png; sourceTree = "<group>"; };
 		0097F31116AB6BFF00302284 /* stage42.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = stage42.tmx; path = Resources/stages/stage42.tmx; sourceTree = "<group>"; };
 		0097F31216AB6BFF00302284 /* stage42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage42.png; path = Resources/stages/stage42.png; sourceTree = "<group>"; };
-		00CD7C0516B30B070031D83C /* UnitSprites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSprites.h; sourceTree = "<group>"; };
-		00CD7C0616B30B070031D83C /* UnitSprites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSprites.m; sourceTree = "<group>"; };
+		00CD7C0516B30B070031D83C /* UnitSprites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitSprites.h; path = ../Layers/UnitSprites.h; sourceTree = "<group>"; };
+		00CD7C0616B30B070031D83C /* UnitSprites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnitSprites.m; path = ../Layers/UnitSprites.m; sourceTree = "<group>"; };
+		00CD7C0A16B347DF0031D83C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Utils/Constants.h; sourceTree = "<group>"; };
+		00CD7C0B16B347DF0031D83C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Utils/Constants.m; sourceTree = "<group>"; };
 		00D60D3A16AF625F0051F30A /* UnitCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitCategory.h; path = UnitCategory/UnitCategory.h; sourceTree = "<group>"; };
 		00D60D3B16AF625F0051F30A /* UnitCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnitCategory.m; path = UnitCategory/UnitCategory.m; sourceTree = "<group>"; };
 		00D60D3D16AF639D0051F30A /* Footman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Footman.h; path = UnitCategory/Footman.h; sourceTree = "<group>"; };
@@ -443,6 +449,11 @@
 		00D60D4416AF64BA0051F30A /* Archer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Archer.m; path = UnitCategory/Archer.m; sourceTree = "<group>"; };
 		00D60D4716AF698F0051F30A /* Topography.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Topography.h; path = Topography/Topography.h; sourceTree = "<group>"; };
 		00D60D4816AF698F0051F30A /* Topography.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Topography.m; path = Topography/Topography.m; sourceTree = "<group>"; };
+		00D6FA9016BAFAA300B65F81 /* movabletile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movabletile.png; sourceTree = "<group>"; };
+		00D6FAA216BB10B400B65F81 /* CCPanZoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPanZoomController.h; sourceTree = "<group>"; };
+		00D6FAA316BB10B400B65F81 /* CCPanZoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPanZoomController.m; sourceTree = "<group>"; };
+		00D6FAA616BB215500B65F81 /* StageMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageMap.h; sourceTree = "<group>"; };
+		00D6FAA716BB215500B65F81 /* StageMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageMap.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,6 +527,8 @@
 		0097F17616AB0F9600302284 /* ragnarok */ = {
 			isa = PBXGroup;
 			children = (
+				00D6FAA516BB212F00B65F81 /* View */,
+				00CD7C0916B3478A0031D83C /* Utils */,
 				0097F30216AB1D6500302284 /* Models */,
 				0097F30116AB1D5000302284 /* Layers */,
 				0097F2EE16AB0F9B00302284 /* AppDelegate.h */,
@@ -530,6 +543,7 @@
 		0097F17716AB0F9600302284 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00D6FA8F16BAFAA300B65F81 /* miscellaneous */,
 				0097F30C16AB281D00302284 /* stages */,
 				0097F2FC16AB12F000302284 /* unitmove */,
 				0097F17816AB0F9600302284 /* Default.png */,
@@ -552,6 +566,7 @@
 		0097F19116AB0F9700302284 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				00D6FA9716BAFE3E00B65F81 /* Extentions */,
 				0097F2A816AB0F9A00302284 /* LICENSE_cocos2d.txt */,
 				0097F2B716AB0F9B00302284 /* LICENSE_CocosDenshion.txt */,
 				0097F2E916AB0F9B00302284 /* LICENSE_Kazmath.txt */,
@@ -911,8 +926,6 @@
 				0097F30616AB1D8600302284 /* MenuLayer.m */,
 				0097F30916AB1DF400302284 /* StageLayer.h */,
 				0097F30A16AB1DF400302284 /* StageLayer.m */,
-				00CD7C0516B30B070031D83C /* UnitSprites.h */,
-				00CD7C0616B30B070031D83C /* UnitSprites.m */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -945,6 +958,15 @@
 			name = stages;
 			sourceTree = "<group>";
 		};
+		00CD7C0916B3478A0031D83C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				00CD7C0A16B347DF0031D83C /* Constants.h */,
+				00CD7C0B16B347DF0031D83C /* Constants.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		00D60D4616AF69590051F30A /* Topography */ = {
 			isa = PBXGroup;
 			children = (
@@ -952,6 +974,36 @@
 				00D60D4816AF698F0051F30A /* Topography.m */,
 			);
 			name = Topography;
+			sourceTree = "<group>";
+		};
+		00D6FA8F16BAFAA300B65F81 /* miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				00D6FA9016BAFAA300B65F81 /* movabletile.png */,
+			);
+			name = miscellaneous;
+			path = Resources/miscellaneous;
+			sourceTree = "<group>";
+		};
+		00D6FA9716BAFE3E00B65F81 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				00D6FAA216BB10B400B65F81 /* CCPanZoomController.h */,
+				00D6FAA316BB10B400B65F81 /* CCPanZoomController.m */,
+			);
+			name = Extentions;
+			path = libs/Extentions;
+			sourceTree = "<group>";
+		};
+		00D6FAA516BB212F00B65F81 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00CD7C0516B30B070031D83C /* UnitSprites.h */,
+				00CD7C0616B30B070031D83C /* UnitSprites.m */,
+				00D6FAA616BB215500B65F81 /* StageMap.h */,
+				00D6FAA716BB215500B65F81 /* StageMap.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1023,6 +1075,7 @@
 				0097F31016AB2BC100302284 /* stage2.png in Resources */,
 				0097F31316AB6BFF00302284 /* stage42.tmx in Resources */,
 				0097F31416AB6BFF00302284 /* stage42.png in Resources */,
+				00D6FA9116BAFAA300B65F81 /* movabletile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,6 +1201,9 @@
 				00D60D4516AF64BA0051F30A /* Archer.m in Sources */,
 				00D60D4916AF698F0051F30A /* Topography.m in Sources */,
 				00CD7C0716B30B070031D83C /* UnitSprites.m in Sources */,
+				00CD7C0C16B347DF0031D83C /* Constants.m in Sources */,
+				00D6FAA416BB10B400B65F81 /* CCPanZoomController.m in Sources */,
+				00D6FAA816BB215500B65F81 /* StageMap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

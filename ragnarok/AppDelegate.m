@@ -79,6 +79,13 @@
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
 	navController_.navigationBarHidden = NO;
+    navController_.navigationBar.barStyle = UIBarStyleBlack;
+    
+    UIBarButtonItem *menuButton = [[[UIBarButtonItem alloc] initWithTitle:@"Menu"
+                                                              style:UIBarButtonSystemItemBookmarks
+                                                             target:self
+                                                             action:@selector(showMenu)] autorelease];
+    [director_.navigationItem setRightBarButtonItem:menuButton];
 	
 	// set the Navigation Controller as the root view controller
 	[window_ addSubview:navController_.view];	// Generates flicker.
@@ -88,6 +95,17 @@
 	[window_ makeKeyAndVisible];
 	
 	return YES;
+}
+
+- (void) showMenu
+{
+    CCArray *currentLayers = [[CCDirector sharedDirector] runningScene].children;
+    for (int i = 0; i < [currentLayers count]; i++) {
+        if ([[currentLayers objectAtIndex:i] respondsToSelector:@selector(showMenu)]) {
+            [[currentLayers objectAtIndex:i] performSelector:@selector(showMenu)];
+        }
+    }
+
 }
 
 // Supported orientations: Landscape. Customize it for your own needs
