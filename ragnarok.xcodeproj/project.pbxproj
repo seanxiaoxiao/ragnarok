@@ -154,6 +154,7 @@
 		00D6FA9116BAFAA300B65F81 /* movabletile.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D6FA9016BAFAA300B65F81 /* movabletile.png */; };
 		00D6FAA416BB10B400B65F81 /* CCPanZoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6FAA316BB10B400B65F81 /* CCPanZoomController.m */; };
 		00D6FAA816BB215500B65F81 /* StageMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6FAA716BB215500B65F81 /* StageMap.m */; };
+		00D6FAAB16BB277100B65F81 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6FAAA16BB277100B65F81 /* Util.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -454,6 +455,8 @@
 		00D6FAA316BB10B400B65F81 /* CCPanZoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPanZoomController.m; sourceTree = "<group>"; };
 		00D6FAA616BB215500B65F81 /* StageMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageMap.h; sourceTree = "<group>"; };
 		00D6FAA716BB215500B65F81 /* StageMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageMap.m; sourceTree = "<group>"; };
+		00D6FAA916BB277100B65F81 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = Utils/Util.h; sourceTree = "<group>"; };
+		00D6FAAA16BB277100B65F81 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Util.m; path = Utils/Util.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -963,6 +966,8 @@
 			children = (
 				00CD7C0A16B347DF0031D83C /* Constants.h */,
 				00CD7C0B16B347DF0031D83C /* Constants.m */,
+				00D6FAA916BB277100B65F81 /* Util.h */,
+				00D6FAAA16BB277100B65F81 /* Util.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1204,6 +1209,7 @@
 				00CD7C0C16B347DF0031D83C /* Constants.m in Sources */,
 				00D6FAA416BB10B400B65F81 /* CCPanZoomController.m in Sources */,
 				00D6FAA816BB215500B65F81 /* StageMap.m in Sources */,
+				00D6FAAB16BB277100B65F81 /* Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
