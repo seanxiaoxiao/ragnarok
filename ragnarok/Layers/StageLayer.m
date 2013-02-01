@@ -9,12 +9,10 @@
 #import "StageLayer.h"
 #import "CCPanZoomController.h"
 #import "StageMap.h"
+#import "UnitSprites.h"
 
 
 @implementation StageLayer
-
-@synthesize previousTouch;
-@synthesize spriteDownStay1;
 
 +(CCScene *) scene
 {
@@ -33,19 +31,12 @@
 -(id) init
 {
     if((self = [super init])) {
-        StageMap *stageMap = [[StageMap alloc] initWithStageNo:42];
-        stageMap.backgroundSprite.anchorPoint = ccp(0, 0);
-        [self addChild: stageMap.backgroundSprite z:0];
-        
-        _controller = [[CCPanZoomController controllerWithNode:self] retain];
-        _controller.boundingRect = [stageMap.backgroundSprite boundingBox];
-        _controller.zoomOutLimit = _controller.optimalZoomOutLimit;
-        _controller.zoomInLimit = 2.0f;
-        [_controller enableWithTouchPriority:0 swallowsTouches:NO];
-        
-        stageMap.backgroundSprite.scale = _controller.optimalZoomOutLimit;
-        
+        stageMap = [[StageMap alloc] initWithStageNo:42];
+        stageMap.delegate = self;
+        [stageMap loadMap];
+
         self.isTouchEnabled = true;
+        [self addPlayer];
     }
         
     return self;
@@ -53,74 +44,47 @@
 
 - (void)addPlayer
 {
-    spriteDownStay1 = [CCSprite spriteWithFile:@"102-1.png" rect:CGRectMake(0, 0, 24, 24)];
-    CCSprite *spriteDownStay2 = [CCSprite spriteWithFile:@"102-1.png" rect:CGRectMake(0, 25, 24, 24)];
-    
-    CCSprite *spriteDownStay3 = [CCSprite spriteWithFile:@"132-1.png" rect:CGRectMake(0, 0, 24, 24)];
-    CCSprite *spriteDownStay4 = [CCSprite spriteWithFile:@"132-1.png" rect:CGRectMake(0, 25, 24, 24)];
+    [stageMap addCharacter:102 atCol:1 andRow:1];
+}
 
+- (void)addMapBackground:(CCSprite *)backgroundSprite
+{
+    backgroundSprite.anchorPoint = ccp(0, 0);
     
-//    CCTMXLayer *unitsLayer = [stageMap layerNamed:@"units"];
-//    
-//    spriteDownStay1.position = CGPointMake(2 * 24 + 10, 8 * 24 + 12);
-//    [stageMap addChild:spriteDownStay1 z:[unitsLayer zOrder]];
-//
-//    spriteDownStay3.position = CGPointMake(2 * 24 + 10, 9 * 24 + 12);
-//    [stageMap addChild:spriteDownStay3 z:[unitsLayer zOrder]];
+    [self addChild:backgroundSprite z:0];
+    
+    _controller = [[CCPanZoomController controllerWithNode:self] retain];
+    _controller.boundingRect = [backgroundSprite boundingBox];
+    _controller.zoomOutLimit = _controller.optimalZoomOutLimit;
+    _controller.zoomInLimit = 2.0f;
+    [_controller enableWithTouchPriority:0 swallowsTouches:NO];
+    
+    backgroundSprite.scale = _controller.optimalZoomOutLimit;
+}
 
+- (void)addCharacter:(UnitSprites *)unit atCol:(int)col andRow:(int)row
+{
+    [unit.unitMoveSprite1 setScale:_controller.optimalZoomOutLimit];
+    unit.unitMoveSprite1.position = CGPointMake(((col * 24) + 12) * _controller.optimalZoomOutLimit, ((row * 24) + 12) * _controller.optimalZoomOutLimit);
+    
+    [unit.unitMoveSprite2 setScale:_controller.optimalZoomOutLimit];
+
+    [self addChild:unit.unitMoveSprite1 z:1];
+    
     CCAnimation* animation;
-    
     NSMutableArray *animFrames = [NSMutableArray array];
-    
-    [animFrames addObject:spriteDownStay1.displayFrame];
-    [animFrames addObject:spriteDownStay2.displayFrame];
-
-    
+    [animFrames addObject:unit.unitMoveSprite1.displayFrame];
+    [animFrames addObject:unit.unitMoveSprite2.displayFrame];
     animation = [CCAnimation animationWithSpriteFrames:animFrames];
-    
     animation.delayPerUnit = 0.5f;
     animation.restoreOriginalFrame = NO;
     
-    
-    CCAnimate *AnimAction  = [CCAnimate actionWithAnimation:animation];
-    
-    CCRepeatForever *anim = [CCRepeatForever actionWithAction:AnimAction];
-    
-    [spriteDownStay1 runAction:anim];
-    
-    CCAnimation* animation2;
-    
-    NSMutableArray *animFrames2 = [NSMutableArray array];
-    
-    [animFrames2 addObject:spriteDownStay3.displayFrame];
-    [animFrames2 addObject:spriteDownStay4.displayFrame];
-    
-    
-    animation2 = [CCAnimation animationWithSpriteFrames:animFrames2];
-    
-    animation2.delayPerUnit = 0.5f;
-    animation2.restoreOriginalFrame = NO;
-    
-    
-    CCAnimate *AnimAction2  = [CCAnimate actionWithAnimation:animation2];
-    
-    CCRepeatForever *anim2 = [CCRepeatForever actionWithAction:AnimAction2];
-    
-    [spriteDownStay3 runAction:anim2];
-    
-    CCMoveTo *move = [CCMoveTo actionWithDuration:100 position:ccp(20,300)];
-    CCCallFuncN *move_done = [CCCallFuncN actionWithTarget:self selector:@selector(spriteMoveFinished)];
-    [spriteDownStay1 runAction:[CCSequence actions:move, move_done,nil]];
-    
-}
+    CCAnimate *animAction  = [CCAnimate actionWithAnimation:animation];
+    CCRepeatForever *anim = [CCRepeatForever actionWithAction:animAction];
+    [unit.unitMoveSprite1 runAction:anim];
 
--(void)spriteMoveFinished
-{
-    CCMoveTo *move1 = [CCMoveTo actionWithDuration:1 position:ccp(20,0)];
-    
-    [spriteDownStay1 runAction:[CCSequence actions:move1,nil]];
-}
 
+}
 
 #pragma mark TouchesMethod
 - (void) showMenu

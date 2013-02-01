@@ -8,16 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "StageMap.h"
 
-@class  CCPanZoomController;
+@class StageMap;
+@class CCPanZoomController;
 
-@interface StageLayer : CCLayer {
+
+@interface StageLayer : CCLayer<StageMapDelegate> {
     CCMenu *menu;
     CCPanZoomController *_controller;
+    StageMap *stageMap;
 }
-
-@property (nonatomic, assign) CGPoint previousTouch;
-@property (nonatomic, retain) CCSprite *spriteDownStay1;
 
 + (CCScene *) scene;
 

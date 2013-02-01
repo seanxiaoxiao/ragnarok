@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Layers/StageLayer.m"
-         timestampString = "381365049.178574"
+         timestampString = "381371343.99995"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "128"
-         endingLineNumber = "128"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
          landmarkName = "-showMenu"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Layers/StageLayer.m"
-         timestampString = "381365049.178574"
+         timestampString = "381371343.99995"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "142"
-         endingLineNumber = "142"
+         startingLineNumber = "124"
+         endingLineNumber = "124"
          landmarkName = "-showMenu"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,26 +47,63 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Layers/StageLayer.m"
-         timestampString = "381365049.178574"
+         timestampString = "381371343.99995"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "159"
-         endingLineNumber = "159"
-         landmarkName = "-convertTouchToNodeSpace:"
+         startingLineNumber = "141"
+         endingLineNumber = "141">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ragnarok/View/StageMap.h"
+         timestampString = "381370960.512953"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "34"
+         endingLineNumber = "34"
+         landmarkName = "-addCharacter:atCol:andRow:"
+         landmarkType = "4">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ragnarok/Layers/UnitSprites.m"
+         timestampString = "381371197.278087"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "21"
+         endingLineNumber = "21"
+         landmarkName = "-initWithUnitNo:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ragnarok/Layers/StageLayer.m"
+         timestampString = "381371343.99995"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
+         landmarkName = "-addCharacter:atCol:andRow:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "ragnarok/View/StageMap.h"
-         timestampString = "381364649.898008"
+         filePath = "ragnarok/Layers/StageLayer.m"
+         timestampString = "381371343.99995"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "20"
-         endingLineNumber = "20"
-         landmarkName = "-addCharacter:inCol:andRow:"
-         landmarkType = "4">
+         startingLineNumber = "97"
+         endingLineNumber = "97"
+         landmarkName = "-showMenu"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
