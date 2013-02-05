@@ -8,16 +8,21 @@
 
 #import "Stage.h"
 #import "cocos2d.h"
+#import "MapSprite.h"
 
 @implementation Stage
 
 @synthesize name;
+@synthesize mapSprite;
 
-- (CCTMXTiledMap *)stageMap
+- (id)initWithStageNo:(int)stageNo
 {
-    NSString *stageName = [[NSString stringWithFormat:@"stage%d.tmx", self.stageNo] autorelease];
-    return [CCTMXTiledMap tiledMapWithTMXFile:stageName];
-};
-
+    self = [super init];
+    if (self) {
+        //characterDirectory = [[NSMutableDictionary alloc] init];
+        mapSprite = [MapSprite spriteWithFile:[NSString stringWithFormat:@"stage%d.png", stageNo]];
+    }
+    return self;
+}
 
 @end

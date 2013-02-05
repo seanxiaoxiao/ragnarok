@@ -8,8 +8,8 @@
 
 #import "StageLayer.h"
 #import "CCPanZoomController.h"
-#import "StageMap.h"
-#import "UnitSprites.h"
+#import "Game.h"
+#import "Character.h"
 
 
 @implementation StageLayer
@@ -31,9 +31,9 @@
 -(id) init
 {
     if((self = [super init])) {
-        stageMap = [[StageMap alloc] initWithStageNo:42];
-        stageMap.delegate = self;
-        [stageMap loadMap];
+        game = [[Game alloc] initGameWithStageNo:42];
+        game.delegate = self;
+        [game loadMap];
 
         self.isTouchEnabled = true;
         [self addPlayer];
@@ -44,7 +44,14 @@
 
 - (void)addPlayer
 {
-    [stageMap addCharacter:102 atCol:1 andRow:1];
+}
+
+- (void)addMovableTileAtCol:(int)col andRow:(int)row
+{
+    CCSprite *movableTile = [CCSprite spriteWithFile:@"movabletile" rect:CGRectMake(0, 0, 24, 24)];
+    [movableTile setScale:_controller.optimalZoomOutLimit];
+    movableTile.position = CGPointMake(((col * 24) + 12) * _controller.optimalZoomOutLimit, ((row * 24) + 12) * _controller.optimalZoomOutLimit);
+    [self addChild:movableTile];
 }
 
 - (void)addMapBackground:(CCSprite *)backgroundSprite
@@ -62,28 +69,26 @@
     backgroundSprite.scale = _controller.optimalZoomOutLimit;
 }
 
-- (void)addCharacter:(UnitSprites *)unit atCol:(int)col andRow:(int)row
+- (void)addCharacter:(Character *)character atCol:(int)col andRow:(int)row
 {
-    [unit.unitMoveSprite1 setScale:_controller.optimalZoomOutLimit];
-    unit.unitMoveSprite1.position = CGPointMake(((col * 24) + 12) * _controller.optimalZoomOutLimit, ((row * 24) + 12) * _controller.optimalZoomOutLimit);
+    [character.unitMoveSprite1 setScale:_controller.optimalZoomOutLimit];
+    character.unitMoveSprite1.position = CGPointMake(((col * 24) + 12) * _controller.optimalZoomOutLimit, ((row * 24) + 12) * _controller.optimalZoomOutLimit);
     
-    [unit.unitMoveSprite2 setScale:_controller.optimalZoomOutLimit];
+    [character.unitMoveSprite2 setScale:_controller.optimalZoomOutLimit];
 
-    [self addChild:unit.unitMoveSprite1 z:1];
+    [self addChild:character.unitMoveSprite1 z:1];
     
     CCAnimation* animation;
     NSMutableArray *animFrames = [NSMutableArray array];
-    [animFrames addObject:unit.unitMoveSprite1.displayFrame];
-    [animFrames addObject:unit.unitMoveSprite2.displayFrame];
+    [animFrames addObject:character.unitMoveSprite1.displayFrame];
+    [animFrames addObject:character.unitMoveSprite2.displayFrame];
     animation = [CCAnimation animationWithSpriteFrames:animFrames];
     animation.delayPerUnit = 0.5f;
     animation.restoreOriginalFrame = NO;
     
     CCAnimate *animAction  = [CCAnimate actionWithAnimation:animation];
     CCRepeatForever *anim = [CCRepeatForever actionWithAction:animAction];
-    [unit.unitMoveSprite1 runAction:anim];
-
-
+    [character.unitMoveSprite1 runAction:anim];
 }
 
 #pragma mark TouchesMethod
@@ -128,6 +133,15 @@
 - (void) closeMenu
 {
     
+}
+
+#pragma Touch Handling
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint location = [touch locationInView:touch.view];
+    NSLog(@"Touched %f %f", location.x, location.y);
 }
 
 

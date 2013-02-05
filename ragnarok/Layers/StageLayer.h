@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "StageMap.h"
+#import "Game.h"
 
-@class StageMap;
+@class Game;
 @class CCPanZoomController;
 
 
-@interface StageLayer : CCLayer<StageMapDelegate> {
+@interface StageLayer : CCLayer<GameDelegate> {
     CCMenu *menu;
     CCPanZoomController *_controller;
-    StageMap *stageMap;
+    Game *game;
 }
 
 + (CCScene *) scene;

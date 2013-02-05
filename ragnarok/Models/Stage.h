@@ -11,6 +11,7 @@
 
 @class CCTMXTiledMap;
 @class Character;
+@class MapSprite;
 
 @interface Stage : NSObject
 
@@ -18,7 +19,8 @@
 @property (nonatomic, assign, readonly) int stageNo;
 @property (nonatomic, assign, readonly) int rows;
 @property (nonatomic, assign, readonly) int cols;
+@property (nonatomic, retain, readonly) MapSprite *mapSprite;
 
-- (CCTMXTiledMap *)stageMap;
+- (id)initWithStageNo:(int)stageNo;
 
 @end
