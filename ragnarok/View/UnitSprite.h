@@ -1,5 +1,5 @@
 //
-//  MapSprite.h
+//  UnitSprite.h
 //  ragnarok
 //
 //  Created by Xiao Xiao on 2/5/13.
@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface MapSprite : CCSprite
+@interface UnitSprite : CCSprite<CCTargetedTouchDelegate>
 
-+(id)spriteWithFile:(NSString*)filename;
+@property (nonatomic, assign) int characterId;
 
 @end

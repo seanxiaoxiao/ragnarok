@@ -146,6 +146,7 @@
 		0097F31316AB6BFF00302284 /* stage42.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0097F31116AB6BFF00302284 /* stage42.tmx */; };
 		0097F31416AB6BFF00302284 /* stage42.png in Resources */ = {isa = PBXBuildFile; fileRef = 0097F31216AB6BFF00302284 /* stage42.png */; };
 		00A745E016C1AB320003F503 /* MapSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A745DF16C1AB320003F503 /* MapSprite.m */; };
+		00A745E316C1CB6E0003F503 /* UnitSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A745E216C1CB6E0003F503 /* UnitSprite.m */; };
 		00CD7C0C16B347DF0031D83C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7C0B16B347DF0031D83C /* Constants.m */; };
 		00D60D3C16AF625F0051F30A /* UnitCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D3B16AF625F0051F30A /* UnitCategory.m */; };
 		00D60D3F16AF639D0051F30A /* Footman.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D3E16AF639D0051F30A /* Footman.m */; };
@@ -439,6 +440,8 @@
 		0097F31216AB6BFF00302284 /* stage42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage42.png; path = Resources/stages/stage42.png; sourceTree = "<group>"; };
 		00A745DE16C1AB320003F503 /* MapSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSprite.h; sourceTree = "<group>"; };
 		00A745DF16C1AB320003F503 /* MapSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSprite.m; sourceTree = "<group>"; };
+		00A745E116C1CB6E0003F503 /* UnitSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSprite.h; sourceTree = "<group>"; };
+		00A745E216C1CB6E0003F503 /* UnitSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSprite.m; sourceTree = "<group>"; };
 		00CD7C0A16B347DF0031D83C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Utils/Constants.h; sourceTree = "<group>"; };
 		00CD7C0B16B347DF0031D83C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Utils/Constants.m; sourceTree = "<group>"; };
 		00D60D3A16AF625F0051F30A /* UnitCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitCategory.h; path = UnitCategory/UnitCategory.h; sourceTree = "<group>"; };
@@ -1005,6 +1008,8 @@
 			children = (
 				00A745DE16C1AB320003F503 /* MapSprite.h */,
 				00A745DF16C1AB320003F503 /* MapSprite.m */,
+				00A745E116C1CB6E0003F503 /* UnitSprite.h */,
+				00A745E216C1CB6E0003F503 /* UnitSprite.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1208,6 +1213,7 @@
 				00D6FAA416BB10B400B65F81 /* CCPanZoomController.m in Sources */,
 				00D6FAAB16BB277100B65F81 /* Util.m in Sources */,
 				00A745E016C1AB320003F503 /* MapSprite.m in Sources */,
+				00A745E316C1CB6E0003F503 /* UnitSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

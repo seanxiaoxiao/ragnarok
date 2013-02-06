@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class CCSprite;
+@class UnitSprite;
 
 enum Direction {
     UP = 0,
@@ -29,8 +29,8 @@ enum Direction {
 @property (nonatomic, assign) BOOL roundFinish;
 
 @property (nonatomic, assign, readonly) int unitNo;
-@property (nonatomic, retain, readonly) CCSprite *unitMoveSprite1;
-@property (nonatomic, retain, readonly) CCSprite *unitMoveSprite2;
+@property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite1;
+@property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite2;
 
 - (id)initWithUnitNo:(int) _unitNo;
 
@@ -49,5 +49,7 @@ enum Direction {
 - (void) move;
 
 - (void) setPosition: (int)_col andRow:(int)_row;
+
+- (void) setCharacterId:(int)characterId;
 
 @end

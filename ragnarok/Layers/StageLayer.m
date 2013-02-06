@@ -10,6 +10,7 @@
 #import "CCPanZoomController.h"
 #import "Game.h"
 #import "Character.h"
+#import "UnitSprite.h"
 
 
 @implementation StageLayer
@@ -48,10 +49,10 @@
 
 - (void)addMovableTileAtCol:(int)col andRow:(int)row
 {
-    CCSprite *movableTile = [CCSprite spriteWithFile:@"movabletile" rect:CGRectMake(0, 0, 24, 24)];
+    CCSprite *movableTile = [CCSprite spriteWithFile:@"movabletile.png" rect:CGRectMake(0, 0, 24, 24)];
     [movableTile setScale:_controller.optimalZoomOutLimit];
     movableTile.position = CGPointMake(((col * 24) + 12) * _controller.optimalZoomOutLimit, ((row * 24) + 12) * _controller.optimalZoomOutLimit);
-    [self addChild:movableTile];
+    [self addChild:movableTile z:50];
 }
 
 - (void)addMapBackground:(CCSprite *)backgroundSprite
@@ -76,7 +77,7 @@
     
     [character.unitMoveSprite2 setScale:_controller.optimalZoomOutLimit];
 
-    [self addChild:character.unitMoveSprite1 z:1];
+    [self addChild:character.unitMoveSprite1 z:100];
     
     CCAnimation* animation;
     NSMutableArray *animFrames = [NSMutableArray array];
@@ -137,12 +138,6 @@
 
 #pragma Touch Handling
 
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch *touch = [[event allTouches] anyObject];
-    CGPoint location = [touch locationInView:touch.view];
-    NSLog(@"Touched %f %f", location.x, location.y);
-}
 
 
 @end

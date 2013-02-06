@@ -16,14 +16,6 @@
 	return [[[super alloc] initWithFile:filename] autorelease];
 }
 
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-//    if (![self containsTouchLocation:touch]) {
-//        return NO;
-//    }
-//    CGPoint point = [self convertTouchToNodeSpaceAR:touch];
-    return YES;
-}
 //
 //- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 //{

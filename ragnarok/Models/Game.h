@@ -23,6 +23,8 @@ enum GamePhase {
 
 - (void)addCharacter:(Character *)character atCol:(int)col andRow:(int)row;
 
+- (void)addMovableTileAtCol:(int)col andRow:(int)row;
+
 @end
 
 

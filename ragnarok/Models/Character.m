@@ -8,6 +8,7 @@
 
 #import "Character.h"
 #import "cocos2d.h"
+#import "UnitSprite.h"
 
 @implementation Character
 @synthesize roundFinish;
@@ -30,8 +31,8 @@
     self = [super init];
     if (self) {
         unitNo = _unitNo;
-        unitMoveSprite1 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"move-%d.png", unitNo] rect:CGRectMake(0, 0, 24, 24)];
-        unitMoveSprite2 = [CCSprite spriteWithFile:[NSString stringWithFormat:@"move-%d.png", unitNo] rect:CGRectMake(0, 25, 24, 24)];
+        unitMoveSprite1 = [UnitSprite spriteWithFile:[NSString stringWithFormat:@"move-%d.png", unitNo] rect:CGRectMake(0, 0, 24, 24)];
+        unitMoveSprite2 = [UnitSprite spriteWithFile:[NSString stringWithFormat:@"move-%d.png", unitNo] rect:CGRectMake(0, 25, 24, 24)];
     }
     return self;
 }
@@ -40,6 +41,13 @@
 {
     col = _col;
     row = _row;
+}
+
+- (void) setCharacterId:(int)characterId
+{
+    _characterId = characterId;
+    unitMoveSprite1.characterId = characterId;
+    unitMoveSprite2.characterId = characterId;
 }
 
 @end
