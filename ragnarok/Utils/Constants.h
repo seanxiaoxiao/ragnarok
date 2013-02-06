@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define EVENT_CHARACTER_TOUCH @"EVENT_CHARACTER_TOUCH"
+#define EVENT_CHARACTER_MOVE @"EVENT_CHARACTER_MOVE"
 
 @interface Constants : NSObject
 

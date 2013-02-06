@@ -9,12 +9,21 @@
 #import <Foundation/Foundation.h>
 
 @class UnitSprite;
+@class UnitCategory;
 
 enum Direction {
     UP = 0,
     DOWN = 1,
     LEFT = 2,
     RIGHT = 3
+};
+
+enum CharacterStatus {
+    READY = 0,
+    ACTIVE = 1,
+    MOVED = 2,
+    ACTION = 3,
+    DONE = 4,
 };
 
 
@@ -27,10 +36,15 @@ enum Direction {
 @property (nonatomic, assign) int row;
 @property (nonatomic, assign) int col;
 @property (nonatomic, assign) BOOL roundFinish;
+@property (nonatomic, assign, readonly) enum CharacterStatus status;
+
+@property (nonatomic, retain, readonly) UnitCategory *unitCategory;
 
 @property (nonatomic, assign, readonly) int unitNo;
 @property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite1;
 @property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite2;
+@property (nonatomic, retain, readonly) NSMutableArray *movableTiles;
+
 
 - (id)initWithUnitNo:(int) _unitNo;
 
@@ -51,5 +65,7 @@ enum Direction {
 - (void) setPosition: (int)_col andRow:(int)_row;
 
 - (void) setCharacterId:(int)characterId;
+
+- (void) touched;
 
 @end

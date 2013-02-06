@@ -11,6 +11,7 @@
 @class Stage;
 @class Character;
 @class MapSprite;
+@class MovableTileSprite;
 
 enum GamePhase {
     homePhase = 1,
@@ -23,7 +24,9 @@ enum GamePhase {
 
 - (void)addCharacter:(Character *)character atCol:(int)col andRow:(int)row;
 
-- (void)addMovableTileAtCol:(int)col andRow:(int)row;
+- (void)addMovableTileAtCol:(MovableTileSprite *)tileSprite;
+
+- (void)moveCharacter:(Character *)character toCol:(int)col andRow:(int)row;
 
 @end
 
@@ -42,5 +45,7 @@ enum GamePhase {
 - (id) initGameWithStageNo:(int)stageNo;
 
 - (void) loadMap;
+
++ (Game *) sharedGame;
 
 @end

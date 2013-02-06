@@ -11,6 +11,8 @@
 #import "Character.h"
 #import "Constants.h"
 
+Game *sharedGame;
+
 @implementation Game
 @synthesize round;
 @synthesize phase;
@@ -35,6 +37,7 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterTouched:) name:EVENT_CHARACTER_TOUCH object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterMove:) name:EVENT_CHARACTER_MOVE object:nil];
         stage = [[Stage alloc] initWithStageNo:stageNo];
         homeCharacters = [[NSMutableArray alloc] init];
         enemyCharacters = [[NSMutableArray alloc] init];
@@ -51,6 +54,7 @@
         [homeCharacters addObject:character1];
         [homeCharacters addObject:character2];
         [homeCharacters addObject:character3];
+        sharedGame = self;
     }
     return self;
 }
@@ -60,10 +64,25 @@
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     for (Character *character in homeCharacters) {
         if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
-            [self.delegate addMovableTileAtCol:character.col - 1 andRow:character.row];
-            [self.delegate addMovableTileAtCol:character.col + 1 andRow:character.row];
-            [self.delegate addMovableTileAtCol:character.col andRow:character.row - 1];
-            [self.delegate addMovableTileAtCol:character.col andRow:character.row + 1];
+            [character touched];
+            for (MovableTileSprite *tile in character.movableTiles) {
+                [delegate addMovableTileAtCol:tile];
+            }
+        }
+    }
+}
+
+- (void)characterMove:(NSNotification *)notification
+{
+    NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
+    NSNumber *col = [notification.userInfo objectForKey:@"TargetCol"];
+    NSNumber *row = [notification.userInfo objectForKey:@"TargetRow"];
+    
+    for (Character *character in homeCharacters) {
+        if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
+            character.col = [col intValue];
+            character.row = [row intValue];
+            [delegate moveCharacter:character toCol:character.col andRow:character.row];
         }
     }
 }
@@ -74,6 +93,11 @@
     for (Character *character in homeCharacters) {
         [delegate addCharacter:character atCol:character.col andRow:character.row];
     }
+}
+
++ (Game *) sharedGame
+{
+    return sharedGame;
 }
 
 

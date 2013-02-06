@@ -11,7 +11,7 @@
 #import "Game.h"
 #import "Character.h"
 #import "UnitSprite.h"
-
+#import "MovableTileSprite.h"
 
 @implementation StageLayer
 
@@ -37,22 +37,16 @@
         [game loadMap];
 
         self.isTouchEnabled = true;
-        [self addPlayer];
     }
         
     return self;
 }
 
-- (void)addPlayer
+- (void)addMovableTileAtCol:(MovableTileSprite *)tileSprite
 {
-}
-
-- (void)addMovableTileAtCol:(int)col andRow:(int)row
-{
-    CCSprite *movableTile = [CCSprite spriteWithFile:@"movabletile.png" rect:CGRectMake(0, 0, 24, 24)];
-    [movableTile setScale:_controller.optimalZoomOutLimit];
-    movableTile.position = CGPointMake(((col * 24) + 12) * _controller.optimalZoomOutLimit, ((row * 24) + 12) * _controller.optimalZoomOutLimit);
-    [self addChild:movableTile z:50];
+    [tileSprite setScale:_controller.optimalZoomOutLimit];
+    tileSprite.position = CGPointMake(((tileSprite.col * 24) + 12) * _controller.optimalZoomOutLimit, ((tileSprite.row * 24) + 12) * _controller.optimalZoomOutLimit);
+    [self addChild:tileSprite z:50];
 }
 
 - (void)addMapBackground:(CCSprite *)backgroundSprite
@@ -91,6 +85,14 @@
     CCRepeatForever *anim = [CCRepeatForever actionWithAction:animAction];
     [character.unitMoveSprite1 runAction:anim];
 }
+
+
+- (void)moveCharacter:(Character *)character toCol:(int)col andRow:(int)row
+{
+    CGPoint targetPoint = CGPointMake(((col * 24) + 12) * _controller.optimalZoomOutLimit, ((row * 24) + 12) * _controller.optimalZoomOutLimit);
+    [character.unitMoveSprite1 runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
+}
+
 
 #pragma mark TouchesMethod
 - (void) showMenu
