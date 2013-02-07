@@ -142,9 +142,7 @@
 		0097F30716AB1D8600302284 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097F30416AB1D8600302284 /* IntroLayer.m */; };
 		0097F30816AB1D8600302284 /* MenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097F30616AB1D8600302284 /* MenuLayer.m */; };
 		0097F30B16AB1DF400302284 /* StageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0097F30A16AB1DF400302284 /* StageLayer.m */; };
-		0097F30E16AB283600302284 /* stage2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0097F30D16AB283600302284 /* stage2.tmx */; };
 		0097F31016AB2BC100302284 /* stage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0097F30F16AB2BC100302284 /* stage2.png */; };
-		0097F31316AB6BFF00302284 /* stage42.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 0097F31116AB6BFF00302284 /* stage42.tmx */; };
 		0097F31416AB6BFF00302284 /* stage42.png in Resources */ = {isa = PBXBuildFile; fileRef = 0097F31216AB6BFF00302284 /* stage42.png */; };
 		00A745E016C1AB320003F503 /* MapSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A745DF16C1AB320003F503 /* MapSprite.m */; };
 		00A745E316C1CB6E0003F503 /* UnitSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A745E216C1CB6E0003F503 /* UnitSprite.m */; };
@@ -437,9 +435,7 @@
 		0097F30616AB1D8600302284 /* MenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayer.m; sourceTree = "<group>"; };
 		0097F30916AB1DF400302284 /* StageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageLayer.h; sourceTree = "<group>"; };
 		0097F30A16AB1DF400302284 /* StageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StageLayer.m; sourceTree = "<group>"; };
-		0097F30D16AB283600302284 /* stage2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = stage2.tmx; path = Resources/stages/stage2.tmx; sourceTree = "<group>"; };
 		0097F30F16AB2BC100302284 /* stage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage2.png; path = Resources/stages/stage2.png; sourceTree = "<group>"; };
-		0097F31116AB6BFF00302284 /* stage42.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = stage42.tmx; path = Resources/stages/stage42.tmx; sourceTree = "<group>"; };
 		0097F31216AB6BFF00302284 /* stage42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage42.png; path = Resources/stages/stage42.png; sourceTree = "<group>"; };
 		00A745DE16C1AB320003F503 /* MapSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSprite.h; sourceTree = "<group>"; };
 		00A745DF16C1AB320003F503 /* MapSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSprite.m; sourceTree = "<group>"; };
@@ -959,10 +955,8 @@
 		0097F30C16AB281D00302284 /* stages */ = {
 			isa = PBXGroup;
 			children = (
-				0097F31116AB6BFF00302284 /* stage42.tmx */,
 				0097F31216AB6BFF00302284 /* stage42.png */,
 				0097F30F16AB2BC100302284 /* stage2.png */,
-				0097F30D16AB283600302284 /* stage2.tmx */,
 			);
 			name = stages;
 			sourceTree = "<group>";
@@ -1084,9 +1078,7 @@
 				0097F2CE16AB0F9B00302284 /* ChangeLog in Resources */,
 				0097F2FF16AB12F000302284 /* move-102.png in Resources */,
 				0097F30016AB12F000302284 /* move-132.png in Resources */,
-				0097F30E16AB283600302284 /* stage2.tmx in Resources */,
 				0097F31016AB2BC100302284 /* stage2.png in Resources */,
-				0097F31316AB6BFF00302284 /* stage42.tmx in Resources */,
 				0097F31416AB6BFF00302284 /* stage42.png in Resources */,
 				00D6FA9116BAFAA300B65F81 /* movabletile.png in Resources */,
 				0021892916BB451E00584C4E /* move-126.png in Resources */,

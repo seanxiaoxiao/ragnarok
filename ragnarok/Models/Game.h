@@ -31,7 +31,8 @@ enum GamePhase {
 @end
 
 
-@interface Game : NSObject
+@interface Game : NSObject {
+}
 
 @property (nonatomic, assign, readonly) Stage* stage;
 @property (nonatomic, assign, readonly) int round;

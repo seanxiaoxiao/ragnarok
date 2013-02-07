@@ -68,4 +68,8 @@ enum CharacterStatus {
 
 - (void) touched;
 
+- (void) doneMove;
+
+- (void) removeMovableTiles;
+
 @end

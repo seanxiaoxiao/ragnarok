@@ -32,7 +32,7 @@
 -(id) init
 {
     if((self = [super init])) {
-        game = [[Game alloc] initGameWithStageNo:42];
+        game = [[Game alloc] initGameWithStageNo:2];
         game.delegate = self;
         [game loadMap];
 
@@ -45,7 +45,7 @@
 - (void)addMovableTileAtCol:(MovableTileSprite *)tileSprite
 {
     [tileSprite setScale:_controller.optimalZoomOutLimit];
-    tileSprite.position = CGPointMake(((tileSprite.col * 24) + 12) * _controller.optimalZoomOutLimit, ((tileSprite.row * 24) + 12) * _controller.optimalZoomOutLimit);
+    tileSprite.position = CGPointMake( ((tileSprite.row * 24) + 12) * _controller.optimalZoomOutLimit, ((tileSprite.col * 24) + 12) * _controller.optimalZoomOutLimit);
     [self addChild:tileSprite z:50];
 }
 
@@ -67,7 +67,7 @@
 - (void)addCharacter:(Character *)character atCol:(int)col andRow:(int)row
 {
     [character.unitMoveSprite1 setScale:_controller.optimalZoomOutLimit];
-    character.unitMoveSprite1.position = CGPointMake(((col * 24) + 12) * _controller.optimalZoomOutLimit, ((row * 24) + 12) * _controller.optimalZoomOutLimit);
+    character.unitMoveSprite1.position = CGPointMake(((row * 24) + 12) * _controller.optimalZoomOutLimit, ((col * 24) + 12) * _controller.optimalZoomOutLimit);
     
     [character.unitMoveSprite2 setScale:_controller.optimalZoomOutLimit];
 
@@ -86,13 +86,11 @@
     [character.unitMoveSprite1 runAction:anim];
 }
 
-
 - (void)moveCharacter:(Character *)character toCol:(int)col andRow:(int)row
 {
-    CGPoint targetPoint = CGPointMake(((col * 24) + 12) * _controller.optimalZoomOutLimit, ((row * 24) + 12) * _controller.optimalZoomOutLimit);
+    CGPoint targetPoint = CGPointMake(((row * 24) + 12) * _controller.optimalZoomOutLimit, ((col * 24) + 12) * _controller.optimalZoomOutLimit);
     [character.unitMoveSprite1 runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
 }
-
 
 #pragma mark TouchesMethod
 - (void) showMenu

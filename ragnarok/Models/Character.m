@@ -12,6 +12,9 @@
 #import "MovableTileSprite.h"
 #import "Footman.h"
 #import "UnitCategory.h"
+#import "Game.h"
+#import "Stage.h"
+#import "Cell.h"
 
 @implementation Character
 @synthesize roundFinish;
@@ -33,7 +36,7 @@
     roundFinish = false;
 }
 
-- (id)initWithUnitNo:(int) _unitNo
+- (id) initWithUnitNo:(int) _unitNo
 {
     self = [super init];
     if (self) {
@@ -45,6 +48,14 @@
         unitCategory = [[Footman alloc] init];
     }
     return self;
+}
+
+- (void) removeMovableTiles
+{
+    for (MovableTileSprite *tile in movableTiles) {
+        [tile removeFromParentAndCleanup:YES];
+    }
+    [movableTiles removeAllObjects];
 }
 
 - (void) setPosition: (int)_col andRow:(int)_row
@@ -63,49 +74,22 @@
 - (void) touched
 {
     if (status == READY) {
-        MovableTileSprite *tile1 = [MovableTileSprite sprite];
-        tile1.characterId = self.characterId;
-        tile1.col = self.col - 1;
-        tile1.row = self.row;
-        [self.movableTiles addObject:tile1];
-        MovableTileSprite *tile2 = [MovableTileSprite sprite];
-        tile2.characterId = self.characterId;
-        tile2.col = self.col + 1;
-        tile2.row = self.row;
-        [self.movableTiles addObject:tile2];
-        MovableTileSprite *tile3 = [MovableTileSprite sprite];
-        tile3.characterId = self.characterId;
-        tile3.col = self.col;
-        tile3.row = self.row - 1;
-        [self.movableTiles addObject:tile3];
-        MovableTileSprite *tile4 = [MovableTileSprite sprite];
-        tile4.characterId = self.characterId;
-        tile4.col = self.col;
-        tile4.row = self.row + 1;
-        [self.movableTiles addObject:tile4];
-        
-        MovableTileSprite *tile5 = [MovableTileSprite sprite];
-        tile5.characterId = self.characterId;
-        tile5.col = self.col - 1;
-        tile5.row = self.row - 1;
-        [self.movableTiles addObject:tile5];
-        MovableTileSprite *tile6 = [MovableTileSprite sprite];
-        tile6.characterId = self.characterId;
-        tile6.col = self.col - 2;
-        tile6.row = self.row;
-        [self.movableTiles addObject:tile6];
-        MovableTileSprite *tile7 = [MovableTileSprite sprite];
-        tile7.characterId = self.characterId;
-        tile7.col = self.col - 2;
-        tile7.row = self.row;
-        [self.movableTiles addObject:tile7];
-        MovableTileSprite *tile8 = [MovableTileSprite sprite];
-        tile8.characterId = self.characterId;
-        tile8.col = self.col;
-        tile8.row = self.row + 2;
-        [self.movableTiles addObject:tile8];
+        NSMutableArray *movableCells = [[Game sharedGame].stage movableTiles:self];
+        for (Cell *cell in movableCells) {
+            MovableTileSprite *movableTile = [MovableTileSprite sprite];
+            movableTile.characterId = self.characterId;
+            movableTile.col = cell.col;
+            movableTile.row = cell.row;
+            [movableTiles addObject:movableTile];
+        }
+        [movableCells release];
         status = ACTIVE;
     }
+}
+
+- (void) doneMove
+{
+    status = READY;
 }
 
 @end

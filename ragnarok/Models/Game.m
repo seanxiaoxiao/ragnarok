@@ -78,13 +78,25 @@ Game *sharedGame;
     NSNumber *col = [notification.userInfo objectForKey:@"TargetCol"];
     NSNumber *row = [notification.userInfo objectForKey:@"TargetRow"];
     
+    Character *touchedCharacter = nil;
     for (Character *character in homeCharacters) {
+        [character removeMovableTiles];
         if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
-            character.col = [col intValue];
-            character.row = [row intValue];
-            [delegate moveCharacter:character toCol:character.col andRow:character.row];
+            touchedCharacter = character;
         }
     }
+    if (touchedCharacter != nil) {
+        touchedCharacter.col = [col intValue];
+        touchedCharacter.row = [row intValue];
+        [delegate moveCharacter:touchedCharacter toCol:touchedCharacter.col andRow:touchedCharacter.row];
+    }
+}
+
+- (void)characterDoneMove:(NSNotification *)notification
+{
+    NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
+    Character *character = [self getCharacter:[characterId intValue]];
+  
 }
 
 - (void)loadMap
@@ -100,5 +112,14 @@ Game *sharedGame;
     return sharedGame;
 }
 
+- (Character *)getCharacter: (int)characterId
+{
+    for (Character *character in homeCharacters) {
+        if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
+            return character;
+        }
+    }
+    return nil;
+}
 
 @end

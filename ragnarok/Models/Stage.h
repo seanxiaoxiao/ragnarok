@@ -12,15 +12,20 @@
 @class CCTMXTiledMap;
 @class Character;
 @class MapSprite;
+@class Cell;
 
-@interface Stage : NSObject
+@interface Stage : NSObject {
+    Cell*** cells;
+}
 
 @property (nonatomic, retain, readonly) NSString *name;
 @property (nonatomic, assign, readonly) int stageNo;
-@property (nonatomic, assign, readonly) int rows;
-@property (nonatomic, assign, readonly) int cols;
+@property (nonatomic, assign, readonly) int width;
+@property (nonatomic, assign, readonly) int height;
 @property (nonatomic, retain, readonly) MapSprite *mapSprite;
 
 - (id)initWithStageNo:(int)stageNo;
+
+- (NSMutableArray *)movableTiles:(Character *)character;
 
 @end

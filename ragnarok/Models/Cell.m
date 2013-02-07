@@ -10,4 +10,8 @@
 
 @implementation Cell
 
+@synthesize moveCost;
+@synthesize row;
+@synthesize col;
+
 @end

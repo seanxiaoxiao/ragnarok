@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Layers/StageLayer.m"
-         timestampString = "381879755.306765"
+         timestampString = "381892452.134515"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "113"
-         endingLineNumber = "113"
+         startingLineNumber = "111"
+         endingLineNumber = "111"
          landmarkName = "-showMenu"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Layers/StageLayer.m"
-         timestampString = "381879755.306765"
+         timestampString = "381892452.134515"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "128"
-         endingLineNumber = "128"
+         startingLineNumber = "126"
+         endingLineNumber = "126"
          landmarkName = "@implementation StageLayer"
          landmarkType = "3">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Layers/StageLayer.m"
-         timestampString = "381879755.306765"
+         timestampString = "381892452.134515"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "147"
-         endingLineNumber = "147">
+         startingLineNumber = "145"
+         endingLineNumber = "145">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Layers/StageLayer.m"
-         timestampString = "381879755.306765"
+         timestampString = "381892452.134515"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "100"
-         endingLineNumber = "100"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
          landmarkName = "-showMenu"
          landmarkType = "5">
       </FileBreakpoint>
@@ -97,11 +97,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Models/Game.m"
-         timestampString = "381879670.239718"
+         timestampString = "381883608.462566"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "65"
-         endingLineNumber = "65"
+         startingLineNumber = "67"
+         endingLineNumber = "67"
          landmarkName = "-characterTouched:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -123,11 +123,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Models/Game.m"
-         timestampString = "381879670.239718"
+         timestampString = "381883608.462566"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "66"
-         endingLineNumber = "66"
+         startingLineNumber = "68"
+         endingLineNumber = "68"
          landmarkName = "-characterTouched:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -136,12 +136,51 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ragnarok/Models/Game.m"
-         timestampString = "381879670.239718"
+         timestampString = "381883608.462566"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "68"
-         endingLineNumber = "68"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
          landmarkName = "-characterTouched:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ragnarok/Models/Stage.m"
+         timestampString = "381883667.280946"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "54"
+         endingLineNumber = "54"
+         landmarkName = "-movableTiles:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ragnarok/Models/Stage.m"
+         timestampString = "381883844.732536"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "56"
+         endingLineNumber = "56"
+         landmarkName = "-movableTiles:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "ragnarok/Models/Character.m"
+         timestampString = "381892495.298825"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "85"
+         endingLineNumber = "85"
+         landmarkName = "-touched"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
