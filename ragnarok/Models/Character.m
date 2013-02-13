@@ -50,14 +50,6 @@
     return self;
 }
 
-- (void) removeMovableTiles
-{
-    for (MovableTileSprite *tile in movableTiles) {
-        [tile removeFromParentAndCleanup:YES];
-    }
-    [movableTiles removeAllObjects];
-}
-
 - (void) setPosition: (int)_col andRow:(int)_row
 {
     col = _col;
@@ -74,6 +66,7 @@
 - (void) touched
 {
     if (status == READY) {
+        NSLog(@"Touched Ready");
         NSMutableArray *movableCells = [[Game sharedGame].stage movableTiles:self];
         for (Cell *cell in movableCells) {
             MovableTileSprite *movableTile = [MovableTileSprite sprite];
@@ -85,11 +78,27 @@
         [movableCells release];
         status = ACTIVE;
     }
+    else if (status == ACTIVE) {
+        NSLog(@"Touched Active");
+        [self _dismissMovableTiles];
+        status = READY;
+    }
 }
 
 - (void) doneMove
 {
+    [self _dismissMovableTiles];
     status = READY;
+}
+
+#pragma private
+- (void) _dismissMovableTiles
+{
+    for (MovableTileSprite *movableTile in movableTiles) {
+        [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:movableTile];
+        [movableTile removeFromParentAndCleanup:YES];
+    }
+    [movableTiles removeAllObjects];
 }
 
 @end

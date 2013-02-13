@@ -70,6 +70,4 @@ enum CharacterStatus {
 
 - (void) doneMove;
 
-- (void) removeMovableTiles;
-
 @end

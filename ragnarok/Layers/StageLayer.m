@@ -12,6 +12,7 @@
 #import "Character.h"
 #import "UnitSprite.h"
 #import "MovableTileSprite.h"
+#import "Constants.h"
 
 @implementation StageLayer
 
@@ -35,7 +36,6 @@
         game = [[Game alloc] initGameWithStageNo:2];
         game.delegate = self;
         [game loadMap];
-
         self.isTouchEnabled = true;
     }
         
@@ -58,7 +58,7 @@
     _controller = [[CCPanZoomController controllerWithNode:self] retain];
     _controller.boundingRect = [backgroundSprite boundingBox];
     _controller.zoomOutLimit = _controller.optimalZoomOutLimit;
-    _controller.zoomInLimit = 2.0f;
+    _controller.zoomInLimit = _controller.optimalZoomOutLimit * 2.0f;
     [_controller enableWithTouchPriority:0 swallowsTouches:NO];
     
     backgroundSprite.scale = _controller.optimalZoomOutLimit;
@@ -89,7 +89,13 @@
 - (void)moveCharacter:(Character *)character toCol:(int)col andRow:(int)row
 {
     CGPoint targetPoint = CGPointMake(((row * 24) + 12) * _controller.optimalZoomOutLimit, ((col * 24) + 12) * _controller.optimalZoomOutLimit);
-    [character.unitMoveSprite1 runAction:[CCMoveTo actionWithDuration:0.5f position:targetPoint]];
+    [character.unitMoveSprite1 runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5f position:targetPoint],
+        [CCCallBlock actionWithBlock:^{
+            NSMutableDictionary *orientationData = [[NSMutableDictionary alloc] init];
+            [orientationData setValue:[NSNumber numberWithInt:character.characterId] forKey:@"CharacterId"];
+            NSNotification *notification = [NSNotification notificationWithName:EVENT_CHARACTER_DONE_MOVE object:nil userInfo:orientationData];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
+        }], nil]];
 }
 
 #pragma mark TouchesMethod

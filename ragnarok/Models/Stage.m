@@ -70,7 +70,6 @@
     [self _addMovableTile:tiles atCol:col andRow:row + 1 withRemain:moveRemain - cells[col][row].moveCost];
     [self _addMovableTile:tiles atCol:col - 1 andRow:row withRemain:moveRemain - cells[col][row].moveCost];
     [self _addMovableTile:tiles atCol:col + 1 andRow:row withRemain:moveRemain - cells[col][row].moveCost];
-
 }
 
 

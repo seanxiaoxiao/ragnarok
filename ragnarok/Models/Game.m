@@ -38,6 +38,8 @@ Game *sharedGame;
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterTouched:) name:EVENT_CHARACTER_TOUCH object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterMove:) name:EVENT_CHARACTER_MOVE object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneMove:) name:EVENT_CHARACTER_DONE_MOVE object:nil];
+        
         stage = [[Stage alloc] initWithStageNo:stageNo];
         homeCharacters = [[NSMutableArray alloc] init];
         enemyCharacters = [[NSMutableArray alloc] init];
@@ -61,6 +63,7 @@ Game *sharedGame;
 
 - (void)characterTouched:(NSNotification *)notification
 {
+    NSLog(@"Character Touched");
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     for (Character *character in homeCharacters) {
         if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
@@ -74,29 +77,27 @@ Game *sharedGame;
 
 - (void)characterMove:(NSNotification *)notification
 {
+    NSLog(@"Character Move");
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     NSNumber *col = [notification.userInfo objectForKey:@"TargetCol"];
     NSNumber *row = [notification.userInfo objectForKey:@"TargetRow"];
     
-    Character *touchedCharacter = nil;
     for (Character *character in homeCharacters) {
-        [character removeMovableTiles];
         if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
-            touchedCharacter = character;
+            character.col = [col intValue];
+            character.row = [row intValue];
+            [delegate moveCharacter:character toCol:character.col andRow:character.row];
+            return;
         }
-    }
-    if (touchedCharacter != nil) {
-        touchedCharacter.col = [col intValue];
-        touchedCharacter.row = [row intValue];
-        [delegate moveCharacter:touchedCharacter toCol:touchedCharacter.col andRow:touchedCharacter.row];
     }
 }
 
 - (void)characterDoneMove:(NSNotification *)notification
 {
+    NSLog(@"Done Move");
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     Character *character = [self getCharacter:[characterId intValue]];
-  
+    [character doneMove];
 }
 
 - (void)loadMap
@@ -115,7 +116,7 @@ Game *sharedGame;
 - (Character *)getCharacter: (int)characterId
 {
     for (Character *character in homeCharacters) {
-        if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
+        if (character.characterId == characterId) {
             return character;
         }
     }
