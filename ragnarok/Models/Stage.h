@@ -26,6 +26,8 @@
 
 - (id)initWithStageNo:(int)stageNo;
 
+- (Cell *)getCellAtCol: (int)col andRow:(int)row;
+
 - (NSMutableArray *)movableTiles:(Character *)character;
 
 @end

@@ -70,4 +70,6 @@ enum CharacterStatus {
 
 - (void) doneMove;
 
+- (void) deactivate;
+
 @end

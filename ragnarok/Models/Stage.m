@@ -12,6 +12,7 @@
 #import "Cell.h"
 #import "Character.h"
 #import "UnitCategory.h"
+#import "Game.h"
 
 @implementation Stage
 
@@ -60,7 +61,9 @@
 {
     if (row >= 0 && row < width && col >= 0 && col < height && moveRemain >= 0 && cells[col][row].used == NO) {
         cells[col][row].used = YES;
-        [tiles addObject:cells[col][row]];
+        if ([self _tileCanAddAtCol:col andRow:row]) {
+            [tiles addObject:cells[col][row]];
+        }
     }
     if (row < 0 || row >= width || col < 0 || col >= height || moveRemain == 0) {
         return;
@@ -70,6 +73,17 @@
     [self _addMovableTile:tiles atCol:col andRow:row + 1 withRemain:moveRemain - cells[col][row].moveCost];
     [self _addMovableTile:tiles atCol:col - 1 andRow:row withRemain:moveRemain - cells[col][row].moveCost];
     [self _addMovableTile:tiles atCol:col + 1 andRow:row withRemain:moveRemain - cells[col][row].moveCost];
+}
+
+- (BOOL)_tileCanAddAtCol:(int)col andRow:(int)row
+{
+    Game *game = [Game sharedGame];
+    for (Character *character in game.homeCharacters) {
+        if (character.col == col && character.row == row) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 

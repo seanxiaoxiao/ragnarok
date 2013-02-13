@@ -13,6 +13,7 @@
 @property (nonatomic, assign) int row;
 @property (nonatomic, assign) int col;
 @property (nonatomic, assign) int moveCost;
+@property (nonatomic, assign) BOOL canMove;
 @property (nonatomic, assign) BOOL used;
 
 @end

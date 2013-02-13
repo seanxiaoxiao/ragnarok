@@ -63,9 +63,9 @@ Game *sharedGame;
 
 - (void)characterTouched:(NSNotification *)notification
 {
-    NSLog(@"Character Touched");
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     for (Character *character in homeCharacters) {
+        [character deactivate];
         if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
             [character touched];
             for (MovableTileSprite *tile in character.movableTiles) {
@@ -77,7 +77,6 @@ Game *sharedGame;
 
 - (void)characterMove:(NSNotification *)notification
 {
-    NSLog(@"Character Move");
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     NSNumber *col = [notification.userInfo objectForKey:@"TargetCol"];
     NSNumber *row = [notification.userInfo objectForKey:@"TargetRow"];

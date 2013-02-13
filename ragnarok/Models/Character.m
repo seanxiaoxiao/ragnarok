@@ -66,20 +66,30 @@
 - (void) touched
 {
     if (status == READY) {
-        NSLog(@"Touched Ready");
-        NSMutableArray *movableCells = [[Game sharedGame].stage movableTiles:self];
-        for (Cell *cell in movableCells) {
-            MovableTileSprite *movableTile = [MovableTileSprite sprite];
-            movableTile.characterId = self.characterId;
-            movableTile.col = cell.col;
-            movableTile.row = cell.row;
-            [movableTiles addObject:movableTile];
-        }
-        [movableCells release];
-        status = ACTIVE;
+        [self activate];
     }
     else if (status == ACTIVE) {
-        NSLog(@"Touched Active");
+        [self deactivate];
+    }
+}
+
+- (void) activate
+{
+    NSMutableArray *movableCells = [[Game sharedGame].stage movableTiles:self];
+    for (Cell *cell in movableCells) {
+        MovableTileSprite *movableTile = [MovableTileSprite sprite];
+        movableTile.characterId = self.characterId;
+        movableTile.col = cell.col;
+        movableTile.row = cell.row;
+        [movableTiles addObject:movableTile];
+    }
+    [movableCells release];
+    status = ACTIVE;
+}
+
+- (void) deactivate
+{
+    if (status == ACTIVE) {
         [self _dismissMovableTiles];
         status = READY;
     }

@@ -13,5 +13,6 @@
 @synthesize moveCost;
 @synthesize row;
 @synthesize col;
+@synthesize canMove;
 
 @end
