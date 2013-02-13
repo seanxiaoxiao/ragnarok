@@ -11,6 +11,7 @@
 #import "Game.h"
 
 @class Game;
+@class HudLayer;
 @class CCPanZoomController;
 
 
@@ -18,7 +19,10 @@
     CCMenu *menu;
     CCPanZoomController *_controller;
     Game *game;
+    HudLayer *hud;
 }
+
+@property (nonatomic,retain) HudLayer *hud;
 
 + (CCScene *) scene;
 

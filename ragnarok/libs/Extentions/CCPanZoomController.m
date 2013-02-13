@@ -569,7 +569,7 @@ CGPoint pt2 = [touch2 locationInView:[touch view]]
     
     //NSLog(@"Centering by: (%.2f, %.2f)", diff.x, diff.y);
     
-    NSLog(@"y:%.2f", diff.y);
+    //NSLog(@"y:%.2f", diff.y);
         
     [self updatePosition:ccpAdd(_node.position, diff)];
 }

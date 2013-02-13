@@ -28,15 +28,17 @@
 @synthesize unitCategory;
 
 
-- (void) finishRound {
+- (void)finishRound
+{
     status = READY;
 }
 
-- (void) startRound {
+- (void)startRound
+{
     roundFinish = false;
 }
 
-- (id) initWithUnitNo:(int) _unitNo
+- (id)initWithUnitNo:(int) _unitNo
 {
     self = [super init];
     if (self) {
@@ -50,20 +52,20 @@
     return self;
 }
 
-- (void) setPosition: (int)_col andRow:(int)_row
+- (void)setPosition: (int)_col andRow:(int)_row
 {
     col = _col;
     row = _row;
 }
 
-- (void) setCharacterId:(int)characterId
+- (void)setCharacterId:(int)characterId
 {
     _characterId = characterId;
     unitMoveSprite1.characterId = characterId;
     unitMoveSprite2.characterId = characterId;
 }
 
-- (void) touched
+- (void)touched
 {
     if (status == READY) {
         [self activate];
@@ -73,7 +75,7 @@
     }
 }
 
-- (void) activate
+- (void)activate
 {
     NSMutableArray *movableCells = [[Game sharedGame].stage movableTiles:self];
     for (Cell *cell in movableCells) {
@@ -87,7 +89,7 @@
     status = ACTIVE;
 }
 
-- (void) deactivate
+- (void)deactivate
 {
     if (status == ACTIVE) {
         [self _dismissMovableTiles];
@@ -95,14 +97,19 @@
     }
 }
 
-- (void) doneMove
+- (void)doneMove
 {
     [self _dismissMovableTiles];
     status = READY;
 }
 
+- (BOOL)activated
+{
+    return status == ACTIVE;
+}
+
 #pragma private
-- (void) _dismissMovableTiles
+- (void)_dismissMovableTiles
 {
     for (MovableTileSprite *movableTile in movableTiles) {
         [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:movableTile];

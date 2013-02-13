@@ -32,44 +32,50 @@ enum CharacterStatus {
 @property (nonatomic, retain, readonly) NSString *name;
 @property (nonatomic, assign) int characterId;
 @property (nonatomic, assign) int level;
-@property (nonatomic, assign) int experience;
 @property (nonatomic, assign) int row;
 @property (nonatomic, assign) int col;
 @property (nonatomic, assign) BOOL roundFinish;
 @property (nonatomic, assign, readonly) enum CharacterStatus status;
 
 @property (nonatomic, retain, readonly) UnitCategory *unitCategory;
-
 @property (nonatomic, assign, readonly) int unitNo;
 @property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite1;
 @property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite2;
 @property (nonatomic, retain, readonly) NSMutableArray *movableTiles;
 
+@property (nonatomic, assign, readonly) int healthPoint;
+@property (nonatomic, assign, readonly) int strength;
+@property (nonatomic, assign, readonly) int skill;
+@property (nonatomic, assign, readonly) int speed;
+@property (nonatomic, assign, readonly) int luck;
+@property (nonatomic, assign, readonly) int defense;
 
 - (id)initWithUnitNo:(int) _unitNo;
 
-- (void) levelUp;
+- (void)levelUp;
 
-- (void) attack:(Character *)opponent;
+- (void)attack:(Character *)opponent;
 
-- (void) speak:(NSString *)text;
+- (void)speak:(NSString *)text;
 
-- (void) faceTo:(enum Direction) direction;
+- (void)faceTo:(enum Direction) direction;
 
-- (void) finishRound;
+- (void)finishRound;
 
-- (void) startRound;
+- (void)startRound;
 
-- (void) move;
+- (void)move;
 
-- (void) setPosition: (int)_col andRow:(int)_row;
+- (void)setPosition: (int)_col andRow:(int)_row;
 
-- (void) setCharacterId:(int)characterId;
+- (void)setCharacterId:(int)characterId;
 
-- (void) touched;
+- (void)touched;
 
-- (void) doneMove;
+- (void)doneMove;
 
-- (void) deactivate;
+- (void)deactivate;
+
+- (BOOL)activated;
 
 @end

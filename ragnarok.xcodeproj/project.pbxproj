@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0021892916BB451E00584C4E /* move-126.png in Resources */ = {isa = PBXBuildFile; fileRef = 0021892816BB451E00584C4E /* move-126.png */; };
 		00501AAE16C2CD73000FCD81 /* MovableTileSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 00501AAD16C2CD73000FCD81 /* MovableTileSprite.m */; };
+		005D0D3516CC2EE900146BA0 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D0D3416CC2EE900146BA0 /* HudLayer.m */; };
 		008D715516AF434F001289D2 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715416AF434F001289D2 /* Game.m */; };
 		008D715916AF4360001289D2 /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715816AF4360001289D2 /* Stage.m */; };
 		008D715C16AF4373001289D2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715B16AF4373001289D2 /* Cell.m */; };
@@ -161,6 +162,8 @@
 		0021892816BB451E00584C4E /* move-126.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "move-126.png"; sourceTree = "<group>"; };
 		00501AAC16C2CD73000FCD81 /* MovableTileSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovableTileSprite.h; sourceTree = "<group>"; };
 		00501AAD16C2CD73000FCD81 /* MovableTileSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovableTileSprite.m; sourceTree = "<group>"; };
+		005D0D3316CC2EE900146BA0 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
+		005D0D3416CC2EE900146BA0 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
 		008D715316AF434F001289D2 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		008D715416AF434F001289D2 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		008D715716AF4360001289D2 /* Stage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stage.h; sourceTree = "<group>"; };
@@ -1009,6 +1012,8 @@
 				00A745E216C1CB6E0003F503 /* UnitSprite.m */,
 				00501AAC16C2CD73000FCD81 /* MovableTileSprite.h */,
 				00501AAD16C2CD73000FCD81 /* MovableTileSprite.m */,
+				005D0D3316CC2EE900146BA0 /* HudLayer.h */,
+				005D0D3416CC2EE900146BA0 /* HudLayer.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1212,6 +1217,7 @@
 				00A745E016C1AB320003F503 /* MapSprite.m in Sources */,
 				00A745E316C1CB6E0003F503 /* UnitSprite.m in Sources */,
 				00501AAE16C2CD73000FCD81 /* MovableTileSprite.m in Sources */,
+				005D0D3516CC2EE900146BA0 /* HudLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

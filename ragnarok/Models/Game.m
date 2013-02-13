@@ -32,7 +32,7 @@ Game *sharedGame;
     }
 }
 
-- (id) initGameWithStageNo:(int)stageNo
+- (id)initGameWithStageNo:(int)stageNo
 {
     self = [super init];
     if (self) {
@@ -65,11 +65,14 @@ Game *sharedGame;
 {
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     for (Character *character in homeCharacters) {
+        BOOL activated = [character activated];
         [character deactivate];
-        if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
-            [character touched];
-            for (MovableTileSprite *tile in character.movableTiles) {
-                [delegate addMovableTileAtCol:tile];
+        if (!activated) {
+            if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
+                [character touched];
+                for (MovableTileSprite *tile in character.movableTiles) {
+                    [delegate addMovableTileAtCol:tile];
+                }
             }
         }
     }
@@ -93,7 +96,6 @@ Game *sharedGame;
 
 - (void)characterDoneMove:(NSNotification *)notification
 {
-    NSLog(@"Done Move");
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     Character *character = [self getCharacter:[characterId intValue]];
     [character doneMove];
@@ -107,7 +109,7 @@ Game *sharedGame;
     }
 }
 
-+ (Game *) sharedGame
++ (Game *)sharedGame
 {
     return sharedGame;
 }

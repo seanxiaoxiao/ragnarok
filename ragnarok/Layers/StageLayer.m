@@ -13,8 +13,10 @@
 #import "UnitSprite.h"
 #import "MovableTileSprite.h"
 #import "Constants.h"
+#import "HudLayer.h"
 
 @implementation StageLayer
+@synthesize hud;
 
 +(CCScene *) scene
 {
@@ -25,7 +27,11 @@
 	StageLayer *layer = [StageLayer node];
 	   
     [scene addChild: layer];
-	
+    
+    HudLayer *hudLayer = [HudLayer node];
+	[scene addChild: hudLayer];
+    layer.hud = hudLayer;
+
 	// return the scene
 	return scene;
 }
@@ -36,6 +42,7 @@
         game = [[Game alloc] initGameWithStageNo:2];
         game.delegate = self;
         [game loadMap];
+        [hud updateStatus:game];
         self.isTouchEnabled = true;
     }
         
@@ -57,8 +64,9 @@
     
     _controller = [[CCPanZoomController controllerWithNode:self] retain];
     _controller.boundingRect = [backgroundSprite boundingBox];
-    _controller.zoomOutLimit = _controller.optimalZoomOutLimit;
-    _controller.zoomInLimit = _controller.optimalZoomOutLimit * 2.0f;
+    NSLog(@"%f %f", _controller.boundingRect.size.width, _controller.boundingRect.size.height);
+    _controller.zoomOutLimit = 1;
+//    _controller.zoomInLimit = _controller.optimalZoomOutLimit;
     [_controller enableWithTouchPriority:0 swallowsTouches:NO];
     
     backgroundSprite.scale = _controller.optimalZoomOutLimit;
