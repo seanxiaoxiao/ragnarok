@@ -28,6 +28,10 @@ enum GamePhase {
 
 - (void)moveCharacter:(Character *)character toCol:(int)col andRow:(int)row;
 
+- (void)showStatus:(Character *)character;
+
+- (void)dismissStatus;
+
 @end
 
 

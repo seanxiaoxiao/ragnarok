@@ -12,14 +12,15 @@
 
 @class Game;
 @class HudLayer;
+@class StatusLayer;
 @class CCPanZoomController;
-
 
 @interface StageLayer : CCLayer<GameDelegate> {
     CCMenu *menu;
     CCPanZoomController *_controller;
     Game *game;
     HudLayer *hud;
+    StatusLayer *statusLayer;
 }
 
 @property (nonatomic,retain) HudLayer *hud;

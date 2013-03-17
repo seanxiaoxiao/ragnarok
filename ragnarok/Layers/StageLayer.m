@@ -14,6 +14,7 @@
 #import "MovableTileSprite.h"
 #import "Constants.h"
 #import "HudLayer.h"
+#import "StatusLayer.h"
 
 @implementation StageLayer
 @synthesize hud;
@@ -68,7 +69,6 @@
     
     _controller = [[CCPanZoomController controllerWithNode:self] retain];
     _controller.boundingRect = [backgroundSprite boundingBox];
-    NSLog(@"%f %f", _controller.boundingRect.size.width, _controller.boundingRect.size.height);
     _controller.zoomOutLimit = 1;
 //    _controller.zoomInLimit = _controller.optimalZoomOutLimit;
     [_controller enableWithTouchPriority:0 swallowsTouches:NO];
@@ -108,6 +108,22 @@
             [[NSNotificationCenter defaultCenter] postNotification:notification];
         }], nil]];
 }
+
+- (void)showStatus:(Character *)character
+{
+    [self dismissStatus];
+    statusLayer = [[StatusLayer alloc] initWithCharacter:character];
+    [[[CCDirector sharedDirector] runningScene] addChild:statusLayer];
+}
+
+- (void)dismissStatus
+{
+    if (statusLayer) {
+        [[[CCDirector sharedDirector] runningScene] removeChild:statusLayer cleanup:YES];
+        statusLayer = nil;
+    }
+}
+
 
 #pragma mark TouchesMethod
 - (void) showMenu

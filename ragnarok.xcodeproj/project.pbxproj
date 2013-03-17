@@ -12,6 +12,7 @@
 		005D0D3516CC2EE900146BA0 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D0D3416CC2EE900146BA0 /* HudLayer.m */; };
 		005D0D3816CC3B7C00146BA0 /* CharacterInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D0D3716CC3B7C00146BA0 /* CharacterInfoLayer.m */; };
 		005D0D3B16CC430100146BA0 /* 92.png in Resources */ = {isa = PBXBuildFile; fileRef = 005D0D3A16CC430100146BA0 /* 92.png */; };
+		0087CEBE16F6558C00435692 /* StatusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087CEBD16F6558C00435692 /* StatusLayer.m */; };
 		008D715516AF434F001289D2 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715416AF434F001289D2 /* Game.m */; };
 		008D715916AF4360001289D2 /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715816AF4360001289D2 /* Stage.m */; };
 		008D715C16AF4373001289D2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715B16AF4373001289D2 /* Cell.m */; };
@@ -169,6 +170,8 @@
 		005D0D3616CC3B7C00146BA0 /* CharacterInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterInfoLayer.h; sourceTree = "<group>"; };
 		005D0D3716CC3B7C00146BA0 /* CharacterInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterInfoLayer.m; sourceTree = "<group>"; };
 		005D0D3A16CC430100146BA0 /* 92.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 92.png; sourceTree = "<group>"; };
+		0087CEBC16F6558C00435692 /* StatusLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusLayer.h; path = ../Layers/StatusLayer.h; sourceTree = "<group>"; };
+		0087CEBD16F6558C00435692 /* StatusLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusLayer.m; path = ../Layers/StatusLayer.m; sourceTree = "<group>"; };
 		008D715316AF434F001289D2 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		008D715416AF434F001289D2 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		008D715716AF4360001289D2 /* Stage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stage.h; sourceTree = "<group>"; };
@@ -1021,6 +1024,8 @@
 		00D6FAA516BB212F00B65F81 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0087CEBC16F6558C00435692 /* StatusLayer.h */,
+				0087CEBD16F6558C00435692 /* StatusLayer.m */,
 				00A745DE16C1AB320003F503 /* MapSprite.h */,
 				00A745DF16C1AB320003F503 /* MapSprite.m */,
 				00A745E116C1CB6E0003F503 /* UnitSprite.h */,
@@ -1237,6 +1242,7 @@
 				00501AAE16C2CD73000FCD81 /* MovableTileSprite.m in Sources */,
 				005D0D3516CC2EE900146BA0 /* HudLayer.m in Sources */,
 				005D0D3816CC3B7C00146BA0 /* CharacterInfoLayer.m in Sources */,
+				0087CEBE16F6558C00435692 /* StatusLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

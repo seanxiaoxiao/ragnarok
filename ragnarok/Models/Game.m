@@ -45,6 +45,7 @@ Game *sharedGame;
         enemyCharacters = [[NSMutableArray alloc] init];
         Character *character1 = [[[Character alloc] initWithUnitNo:102] autorelease];
         [character1 setPosition:1 andRow:1];
+
         character1.characterId = 1;
         Character *character2 = [[[Character alloc] initWithUnitNo:132] autorelease];
         [character2 setPosition:4 andRow:1];
@@ -63,6 +64,7 @@ Game *sharedGame;
 
 - (void)characterTouched:(NSNotification *)notification
 {
+    [delegate dismissStatus];
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     for (Character *character in homeCharacters) {
         BOOL activated = [character activated];
@@ -72,6 +74,7 @@ Game *sharedGame;
                 [character touched];
                 for (MovableTileSprite *tile in character.movableTiles) {
                     [delegate addMovableTileAtCol:tile];
+                    [delegate showStatus:character];
                 }
             }
         }
@@ -84,13 +87,11 @@ Game *sharedGame;
     NSNumber *col = [notification.userInfo objectForKey:@"TargetCol"];
     NSNumber *row = [notification.userInfo objectForKey:@"TargetRow"];
     
-    for (Character *character in homeCharacters) {
-        if ([[NSNumber numberWithInt:character.characterId] isEqualToNumber:characterId]) {
-            character.col = [col intValue];
-            character.row = [row intValue];
-            [delegate moveCharacter:character toCol:character.col andRow:character.row];
-            return;
-        }
+    Character *character = [self getCharacter:[characterId intValue]];
+    if (character) {
+        character.col = [col intValue];
+        character.row = [row intValue];
+        [delegate moveCharacter:character toCol:character.col andRow:character.row];
     }
 }
 
@@ -98,6 +99,7 @@ Game *sharedGame;
 {
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     Character *character = [self getCharacter:[characterId intValue]];
+    [delegate dismissStatus];
     [character doneMove];
 }
 
