@@ -10,6 +10,8 @@
 		0021892916BB451E00584C4E /* move-126.png in Resources */ = {isa = PBXBuildFile; fileRef = 0021892816BB451E00584C4E /* move-126.png */; };
 		00501AAE16C2CD73000FCD81 /* MovableTileSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 00501AAD16C2CD73000FCD81 /* MovableTileSprite.m */; };
 		005D0D3516CC2EE900146BA0 /* HudLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D0D3416CC2EE900146BA0 /* HudLayer.m */; };
+		005D0D3816CC3B7C00146BA0 /* CharacterInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D0D3716CC3B7C00146BA0 /* CharacterInfoLayer.m */; };
+		005D0D3B16CC430100146BA0 /* 92.png in Resources */ = {isa = PBXBuildFile; fileRef = 005D0D3A16CC430100146BA0 /* 92.png */; };
 		008D715516AF434F001289D2 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715416AF434F001289D2 /* Game.m */; };
 		008D715916AF4360001289D2 /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715816AF4360001289D2 /* Stage.m */; };
 		008D715C16AF4373001289D2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715B16AF4373001289D2 /* Cell.m */; };
@@ -164,6 +166,9 @@
 		00501AAD16C2CD73000FCD81 /* MovableTileSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovableTileSprite.m; sourceTree = "<group>"; };
 		005D0D3316CC2EE900146BA0 /* HudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudLayer.h; sourceTree = "<group>"; };
 		005D0D3416CC2EE900146BA0 /* HudLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudLayer.m; sourceTree = "<group>"; };
+		005D0D3616CC3B7C00146BA0 /* CharacterInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterInfoLayer.h; sourceTree = "<group>"; };
+		005D0D3716CC3B7C00146BA0 /* CharacterInfoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterInfoLayer.m; sourceTree = "<group>"; };
+		005D0D3A16CC430100146BA0 /* 92.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 92.png; sourceTree = "<group>"; };
 		008D715316AF434F001289D2 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		008D715416AF434F001289D2 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		008D715716AF4360001289D2 /* Stage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stage.h; sourceTree = "<group>"; };
@@ -483,6 +488,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		005D0D3916CC430100146BA0 /* face */ = {
+			isa = PBXGroup;
+			children = (
+				005D0D3A16CC430100146BA0 /* 92.png */,
+			);
+			name = face;
+			path = Resources/face;
+			sourceTree = "<group>";
+		};
 		008D716016AF4E4A001289D2 /* UnitCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +564,7 @@
 		0097F17716AB0F9600302284 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				005D0D3916CC430100146BA0 /* face */,
 				00D6FA8F16BAFAA300B65F81 /* miscellaneous */,
 				0097F30C16AB281D00302284 /* stages */,
 				0097F2FC16AB12F000302284 /* unitmove */,
@@ -1014,6 +1029,8 @@
 				00501AAD16C2CD73000FCD81 /* MovableTileSprite.m */,
 				005D0D3316CC2EE900146BA0 /* HudLayer.h */,
 				005D0D3416CC2EE900146BA0 /* HudLayer.m */,
+				005D0D3616CC3B7C00146BA0 /* CharacterInfoLayer.h */,
+				005D0D3716CC3B7C00146BA0 /* CharacterInfoLayer.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1087,6 +1104,7 @@
 				0097F31416AB6BFF00302284 /* stage42.png in Resources */,
 				00D6FA9116BAFAA300B65F81 /* movabletile.png in Resources */,
 				0021892916BB451E00584C4E /* move-126.png in Resources */,
+				005D0D3B16CC430100146BA0 /* 92.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1218,6 +1236,7 @@
 				00A745E316C1CB6E0003F503 /* UnitSprite.m in Sources */,
 				00501AAE16C2CD73000FCD81 /* MovableTileSprite.m in Sources */,
 				005D0D3516CC2EE900146BA0 /* HudLayer.m in Sources */,
+				005D0D3816CC3B7C00146BA0 /* CharacterInfoLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

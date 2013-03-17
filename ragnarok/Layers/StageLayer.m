@@ -36,23 +36,27 @@
 	return scene;
 }
 
--(id) init
+- (id)init
 {
     if((self = [super init])) {
         game = [[Game alloc] initGameWithStageNo:2];
         game.delegate = self;
         [game loadMap];
-        [hud updateStatus:game];
         self.isTouchEnabled = true;
     }
         
     return self;
 }
 
+- (void)onEnterTransitionDidFinish
+{
+    [hud updateStatus:[Game sharedGame]];
+}
+
 - (void)addMovableTileAtCol:(MovableTileSprite *)tileSprite
 {
     [tileSprite setScale:_controller.optimalZoomOutLimit];
-    tileSprite.position = CGPointMake( ((tileSprite.row * 24) + 12) * _controller.optimalZoomOutLimit, ((tileSprite.col * 24) + 12) * _controller.optimalZoomOutLimit);
+    tileSprite.position = CGPointMake(((tileSprite.row * 24) + 12) * _controller.optimalZoomOutLimit, ((tileSprite.col * 24) + 12) * _controller.optimalZoomOutLimit);
     [self addChild:tileSprite z:50];
 }
 
@@ -68,7 +72,6 @@
     _controller.zoomOutLimit = 1;
 //    _controller.zoomInLimit = _controller.optimalZoomOutLimit;
     [_controller enableWithTouchPriority:0 swallowsTouches:NO];
-    
     backgroundSprite.scale = _controller.optimalZoomOutLimit;
 }
 
@@ -132,7 +135,7 @@
     menu = [[CCMenu menuWithItems:exitStage, endTurn, closeMenu, nil] autorelease];
     
     [menu alignItemsVertically];
-    [menu setPosition:ccp( size.width / 3, size.height / 3 - 50)];
+    [menu setPosition:ccp(size.width / 3, size.height / 3 - 50)];
     
     [self addChild:menu];
     

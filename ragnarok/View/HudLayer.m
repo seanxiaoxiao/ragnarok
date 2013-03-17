@@ -19,13 +19,13 @@
         self.position = ccp(0, [[CCDirector sharedDirector] winSize].height - 40);
         self.contentSize = CGSizeMake([[CCDirector sharedDirector] winSize].width, 40);
 
-        stageLabel = [CCLabelTTF labelWithString:@"Stage 2" fontName:@"Marker Felt" fontSize:18];
+        stageLabel = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:18];
         stageLabel.position = ccp(42, 20);
         stageLabel.anchorPoint = ccp(0, 0.5);
         stageLabel.color = ccc3(0, 0, 0);
         
         [self addChild:stageLabel];
-        roundLabel = [CCLabelTTF labelWithString:@"Round 1" fontName:@"Marker Felt" fontSize:18];
+        roundLabel = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:18];
         roundLabel.position = ccp(122, 20);
         roundLabel.anchorPoint = ccp(0, 0.5);
         roundLabel.color = ccc3(0, 0, 0);

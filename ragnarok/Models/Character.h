@@ -31,7 +31,7 @@ enum CharacterStatus {
 
 @property (nonatomic, retain, readonly) NSString *name;
 @property (nonatomic, assign) int characterId;
-@property (nonatomic, assign) int level;
+
 @property (nonatomic, assign) int row;
 @property (nonatomic, assign) int col;
 @property (nonatomic, assign) BOOL roundFinish;
@@ -43,12 +43,15 @@ enum CharacterStatus {
 @property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite2;
 @property (nonatomic, retain, readonly) NSMutableArray *movableTiles;
 
+@property (nonatomic, assign, readonly) int level;
+@property (nonatomic, assign, readonly) int exp;
 @property (nonatomic, assign, readonly) int healthPoint;
+@property (nonatomic, assign, readonly) int maxHealthPoint;
 @property (nonatomic, assign, readonly) int strength;
 @property (nonatomic, assign, readonly) int skill;
 @property (nonatomic, assign, readonly) int speed;
 @property (nonatomic, assign, readonly) int luck;
-@property (nonatomic, assign, readonly) int defense;
+@property (nonatomic, assign, readonly) int defence;
 
 - (id)initWithUnitNo:(int) _unitNo;
 
