@@ -106,6 +106,23 @@
     status = ACTION;
 }
 
+- (void)attack:(Character *)opponent
+{
+    [self _dismissAttackableTiles];
+    int damage = self.strength - opponent.defence;
+    opponent.healthPoint = opponent.healthPoint - damage;
+    if (opponent.healthPoint <= 0) {
+        [opponent die];
+    }
+    status = DONE;
+}
+
+- (void)die
+{
+    status = DEAD;
+    [[Game sharedGame] characterDie:self];
+}
+
 - (void)doneAction
 {
     status = DONE;
@@ -130,6 +147,15 @@
 }
 
 #pragma private
+- (void)_dismissAttackableTiles
+{
+    for (AttackableTileSprite *attackableTile in attackableTiles) {
+        [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:attackableTile];
+        [attackableTile removeFromParentAndCleanup:YES];
+    }
+    [attackableTiles removeAllObjects];
+}
+
 - (void)_dismissMovableTiles
 {
     for (MovableTileSprite *movableTile in movableTiles) {

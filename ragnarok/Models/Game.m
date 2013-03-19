@@ -41,7 +41,8 @@ Game *sharedGame;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneMove:) name:EVENT_CHARACTER_DONE_MOVE object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterReadyAttack:) name:EVENT_CHARACTER_READY_ATTACK object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneAction:) name:EVENT_CHARACTER_DONE_ACTION object:nil];
-
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDecideAttack:) name:EVENT_CHARACTER_DECIDE_ATTACK object:nil];
+        
         
         stage = [[Stage alloc] initWithStageNo:stageNo];
         homeCharacters = [[NSMutableArray alloc] init];
@@ -70,6 +71,11 @@ Game *sharedGame;
     [delegate dismissStatus];
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     for (Character *character in homeCharacters) {
+        if (character.status != READY && character.status != DONE) {
+            return;
+        }
+    }
+    for (Character *character in homeCharacters) {
         BOOL activated = [character activated];
         [character deactivate];
         if (!activated) {
@@ -95,6 +101,21 @@ Game *sharedGame;
         character.col = [col intValue];
         character.row = [row intValue];
         [delegate moveCharacter:character toCol:character.col andRow:character.row];
+    }
+}
+
+- (void)characterDecideAttack:(NSNotification *)notification
+{
+    NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
+    NSNumber *col = [notification.userInfo objectForKey:@"TargetCol"];
+    NSNumber *row = [notification.userInfo objectForKey:@"TargetRow"];
+    
+    Character *attacker = [self getCharacter:[characterId intValue]];
+    Character *defender = [self getCharacterAtCol:[col intValue] andRow:[row intValue]];
+    if (defender) {
+        [attacker attack:defender];
+        [delegate dismissActionMenu];
+        [delegate characterAttack:attacker on:defender];
     }
 }
 
@@ -146,6 +167,21 @@ Game *sharedGame;
         }
     }
     return nil;
+}
+
+- (Character *)getCharacterAtCol: (int)col andRow: (int)row
+{
+    for (Character *character in homeCharacters) {
+        if (character.col == col && character.row == row) {
+            return character;
+        }
+    }
+    return nil;
+}
+
+- (void)characterDie:(Character *)character
+{
+    
 }
 
 @end

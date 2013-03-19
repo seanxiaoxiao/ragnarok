@@ -24,6 +24,7 @@ enum CharacterStatus {
     MOVED = 2,
     ACTION = 3,
     DONE = 4,
+    DEAD = 5,
 };
 
 
@@ -45,15 +46,15 @@ enum CharacterStatus {
 @property (nonatomic, retain, readonly) NSMutableArray *movableTiles;
 @property (nonatomic, retain, readonly) NSMutableArray *attackableTiles;
 
-@property (nonatomic, assign, readonly) int level;
-@property (nonatomic, assign, readonly) int exp;
-@property (nonatomic, assign, readonly) int healthPoint;
-@property (nonatomic, assign, readonly) int maxHealthPoint;
-@property (nonatomic, assign, readonly) int strength;
-@property (nonatomic, assign, readonly) int skill;
-@property (nonatomic, assign, readonly) int speed;
-@property (nonatomic, assign, readonly) int luck;
-@property (nonatomic, assign, readonly) int defence;
+@property (nonatomic, assign) int level;
+@property (nonatomic, assign) int exp;
+@property (nonatomic, assign) int healthPoint;
+@property (nonatomic, assign) int maxHealthPoint;
+@property (nonatomic, assign) int strength;
+@property (nonatomic, assign) int skill;
+@property (nonatomic, assign) int speed;
+@property (nonatomic, assign) int luck;
+@property (nonatomic, assign) int defence;
 
 - (id)initWithUnitNo:(int) _unitNo;
 

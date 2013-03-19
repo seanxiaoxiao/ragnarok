@@ -39,6 +39,9 @@ enum GamePhase {
 
 - (void)dismissActionMenu;
 
+- (void)characterAttack:(Character *)attacker on:(Character *)defender;
+
+
 @end
 
 
@@ -57,6 +60,8 @@ enum GamePhase {
 - (id) initGameWithStageNo:(int)stageNo;
 
 - (void) loadMap;
+
+- (void)characterDie:(Character *)character;
 
 + (Game *) sharedGame;
 

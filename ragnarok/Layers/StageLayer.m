@@ -107,6 +107,22 @@
     [character.unitMoveSprite1 runAction:anim];
 }
 
+- (void)characterAttack:(Character *)attacker on:(Character *)defender
+{
+    CGPoint targetPoint = CGPointMake(((defender.row * 24) + 12) * _controller.optimalZoomOutLimit, ((defender.col * 24) + 12) * _controller.optimalZoomOutLimit);
+    CGPoint originPoint = CGPointMake(((attacker.row * 24) + 12) * _controller.optimalZoomOutLimit, ((attacker.col * 24) + 12) * _controller.optimalZoomOutLimit);
+    [attacker.unitMoveSprite1 runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.1f position:targetPoint],
+                                          [CCCallBlock actionWithBlock:^{
+        [attacker.unitMoveSprite1 runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.1f position:originPoint],
+                                             [CCCallBlock actionWithBlock:^{
+            NSMutableDictionary *orientationData = [[NSMutableDictionary alloc] init];
+            [orientationData setValue:[NSNumber numberWithInt:attacker.characterId] forKey:@"CharacterId"];
+            NSNotification *notification = [NSNotification notificationWithName:EVENT_CHARACTER_DONE_MOVE object:nil userInfo:orientationData];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
+        }], nil]];
+    }], nil]];
+}
+
 - (void)moveCharacter:(Character *)character toCol:(int)col andRow:(int)row
 {
     CGPoint targetPoint = CGPointMake(((row * 24) + 12) * _controller.optimalZoomOutLimit, ((col * 24) + 12) * _controller.optimalZoomOutLimit);
