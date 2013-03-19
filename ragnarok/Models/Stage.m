@@ -44,6 +44,23 @@
     return self;
 }
 
+- (NSMutableArray *)attackableTiles:(Character *)character
+{
+    NSMutableArray *tiles = [[NSMutableArray alloc] init];
+    [self _addAttackableTiles:tiles atCol:character.col andRow:character.row - 1];
+    [self _addAttackableTiles:tiles atCol:character.col andRow:character.row + 1];
+    [self _addAttackableTiles:tiles atCol:character.col - 1 andRow:character.row];
+    [self _addAttackableTiles:tiles atCol:character.col + 1 andRow:character.row];
+    return tiles;
+}
+
+- (void)_addAttackableTiles:(NSMutableArray *)tiles atCol:(int)col andRow:(int)row
+{
+    if (row >= 0 && row < width && col >= 0 && col < height) {
+        [tiles addObject:cells[col][row]];
+    }
+}
+
 - (NSMutableArray *)movableTiles:(Character *)character
 {
     int maxCount = character.unitCategory.moves;
@@ -56,6 +73,7 @@
     [self _addMovableTile:tiles atCol:character.col andRow:character.row withRemain:maxCount];
     return tiles;
 }
+
 
 - (void)_addMovableTile:(NSMutableArray *)tiles atCol:(int)col andRow:(int)row withRemain:(int)moveRemain
 {

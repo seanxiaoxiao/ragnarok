@@ -28,6 +28,8 @@
 
 - (Cell *)getCellAtCol: (int)col andRow:(int)row;
 
+- (NSMutableArray *)attackableTiles:(Character *)character;
+
 - (NSMutableArray *)movableTiles:(Character *)character;
 
 @end

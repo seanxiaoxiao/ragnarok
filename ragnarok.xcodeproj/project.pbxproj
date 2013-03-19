@@ -13,6 +13,8 @@
 		005D0D3816CC3B7C00146BA0 /* CharacterInfoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 005D0D3716CC3B7C00146BA0 /* CharacterInfoLayer.m */; };
 		005D0D3B16CC430100146BA0 /* 92.png in Resources */ = {isa = PBXBuildFile; fileRef = 005D0D3A16CC430100146BA0 /* 92.png */; };
 		0087CEBE16F6558C00435692 /* StatusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087CEBD16F6558C00435692 /* StatusLayer.m */; };
+		0087CED116F6D6BC00435692 /* AttackableTileSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087CED016F6D6BB00435692 /* AttackableTileSprite.m */; };
+		0087CED316F6DA8C00435692 /* attackabletile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0087CED216F6DA8C00435692 /* attackabletile.png */; };
 		008D715516AF434F001289D2 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715416AF434F001289D2 /* Game.m */; };
 		008D715916AF4360001289D2 /* Stage.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715816AF4360001289D2 /* Stage.m */; };
 		008D715C16AF4373001289D2 /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D715B16AF4373001289D2 /* Cell.m */; };
@@ -172,6 +174,9 @@
 		005D0D3A16CC430100146BA0 /* 92.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 92.png; sourceTree = "<group>"; };
 		0087CEBC16F6558C00435692 /* StatusLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusLayer.h; path = ../Layers/StatusLayer.h; sourceTree = "<group>"; };
 		0087CEBD16F6558C00435692 /* StatusLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusLayer.m; path = ../Layers/StatusLayer.m; sourceTree = "<group>"; };
+		0087CECF16F6D6BB00435692 /* AttackableTileSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackableTileSprite.h; sourceTree = "<group>"; };
+		0087CED016F6D6BB00435692 /* AttackableTileSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttackableTileSprite.m; sourceTree = "<group>"; };
+		0087CED216F6DA8C00435692 /* attackabletile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attackabletile.png; sourceTree = "<group>"; };
 		008D715316AF434F001289D2 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		008D715416AF434F001289D2 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		008D715716AF4360001289D2 /* Stage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stage.h; sourceTree = "<group>"; };
@@ -1005,6 +1010,7 @@
 		00D6FA8F16BAFAA300B65F81 /* miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
+				0087CED216F6DA8C00435692 /* attackabletile.png */,
 				00D6FA9016BAFAA300B65F81 /* movabletile.png */,
 			);
 			name = miscellaneous;
@@ -1036,6 +1042,8 @@
 				005D0D3416CC2EE900146BA0 /* HudLayer.m */,
 				005D0D3616CC3B7C00146BA0 /* CharacterInfoLayer.h */,
 				005D0D3716CC3B7C00146BA0 /* CharacterInfoLayer.m */,
+				0087CECF16F6D6BB00435692 /* AttackableTileSprite.h */,
+				0087CED016F6D6BB00435692 /* AttackableTileSprite.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1110,6 +1118,7 @@
 				00D6FA9116BAFAA300B65F81 /* movabletile.png in Resources */,
 				0021892916BB451E00584C4E /* move-126.png in Resources */,
 				005D0D3B16CC430100146BA0 /* 92.png in Resources */,
+				0087CED316F6DA8C00435692 /* attackabletile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1243,6 +1252,7 @@
 				005D0D3516CC2EE900146BA0 /* HudLayer.m in Sources */,
 				005D0D3816CC3B7C00146BA0 /* CharacterInfoLayer.m in Sources */,
 				0087CEBE16F6558C00435692 /* StatusLayer.m in Sources */,
+				0087CED116F6D6BC00435692 /* AttackableTileSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

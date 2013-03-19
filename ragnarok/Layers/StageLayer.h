@@ -21,6 +21,7 @@
     Game *game;
     HudLayer *hud;
     StatusLayer *statusLayer;
+    CCMenu *actionMenu;
 }
 
 @property (nonatomic,retain) HudLayer *hud;

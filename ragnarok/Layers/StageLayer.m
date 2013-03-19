@@ -12,9 +12,11 @@
 #import "Character.h"
 #import "UnitSprite.h"
 #import "MovableTileSprite.h"
+#import "AttackableTileSprite.h"
 #import "Constants.h"
 #import "HudLayer.h"
 #import "StatusLayer.h"
+#import "Util.h"
 
 @implementation StageLayer
 @synthesize hud;
@@ -60,6 +62,14 @@
     tileSprite.position = CGPointMake(((tileSprite.row * 24) + 12) * _controller.optimalZoomOutLimit, ((tileSprite.col * 24) + 12) * _controller.optimalZoomOutLimit);
     [self addChild:tileSprite z:50];
 }
+
+- (void)addAttackableTileAtCol:(AttackableTileSprite *)tileSprite
+{
+    [tileSprite setScale:_controller.optimalZoomOutLimit];
+    tileSprite.position = CGPointMake(((tileSprite.row * 24) + 12) * _controller.optimalZoomOutLimit, ((tileSprite.col * 24) + 12) * _controller.optimalZoomOutLimit);
+    [self addChild:tileSprite z:50];
+}
+
 
 - (void)addMapBackground:(CCSprite *)backgroundSprite
 {
@@ -121,6 +131,21 @@
     if (statusLayer) {
         [[[CCDirector sharedDirector] runningScene] removeChild:statusLayer cleanup:YES];
         statusLayer = nil;
+    }
+}
+
+- (void)showActionMenu:(Character *)character
+{
+    [self dismissActionMenu];
+    actionMenu = [Util getMenuByCharacter:character];
+    [self addChild:actionMenu];
+}
+
+- (void)dismissActionMenu
+{
+    if (actionMenu) {
+        [self removeChild:actionMenu cleanup:YES];
+        actionMenu = nil;
     }
 }
 

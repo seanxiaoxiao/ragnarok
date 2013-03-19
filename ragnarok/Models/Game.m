@@ -39,6 +39,9 @@ Game *sharedGame;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterTouched:) name:EVENT_CHARACTER_TOUCH object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterMove:) name:EVENT_CHARACTER_MOVE object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneMove:) name:EVENT_CHARACTER_DONE_MOVE object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterReadyAttack:) name:EVENT_CHARACTER_READY_ATTACK object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneAction:) name:EVENT_CHARACTER_DONE_ACTION object:nil];
+
         
         stage = [[Stage alloc] initWithStageNo:stageNo];
         homeCharacters = [[NSMutableArray alloc] init];
@@ -74,8 +77,8 @@ Game *sharedGame;
                 [character touched];
                 for (MovableTileSprite *tile in character.movableTiles) {
                     [delegate addMovableTileAtCol:tile];
-                    [delegate showStatus:character];
                 }
+                [delegate showStatus:character];
             }
         }
     }
@@ -100,7 +103,26 @@ Game *sharedGame;
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     Character *character = [self getCharacter:[characterId intValue]];
     [delegate dismissStatus];
+    [delegate showActionMenu:character];
     [character doneMove];
+}
+
+- (void)characterDoneAction:(NSNotification *)notification
+{
+    NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
+    Character *character = [self getCharacter:[characterId intValue]];
+    [character doneAction];
+    [delegate dismissActionMenu];
+}
+
+- (void)characterReadyAttack:(NSNotification *)notification
+{
+    NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
+    Character *character = [self getCharacter:[characterId intValue]];
+    [character readyToAttack];
+    for (AttackableTileSprite *tile in character.attackableTiles) {
+        [delegate addAttackableTileAtCol:tile];
+    }
 }
 
 - (void)loadMap

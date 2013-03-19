@@ -41,7 +41,9 @@ enum CharacterStatus {
 @property (nonatomic, assign, readonly) int unitNo;
 @property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite1;
 @property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite2;
+
 @property (nonatomic, retain, readonly) NSMutableArray *movableTiles;
+@property (nonatomic, retain, readonly) NSMutableArray *attackableTiles;
 
 @property (nonatomic, assign, readonly) int level;
 @property (nonatomic, assign, readonly) int exp;
@@ -76,6 +78,10 @@ enum CharacterStatus {
 - (void)touched;
 
 - (void)doneMove;
+
+- (void)doneAction;
+
+- (void)readyToAttack;
 
 - (void)deactivate;
 

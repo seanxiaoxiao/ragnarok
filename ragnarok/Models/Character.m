@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "UnitSprite.h"
 #import "MovableTileSprite.h"
+#import "AttackableTileSprite.h"
 #import "Footman.h"
 #import "UnitCategory.h"
 #import "Game.h"
@@ -26,6 +27,7 @@
 @synthesize status;
 @synthesize movableTiles;
 @synthesize unitCategory;
+@synthesize attackableTiles;
 
 
 - (void)finishRound
@@ -46,6 +48,7 @@
         unitMoveSprite1 = [UnitSprite spriteWithFile:[NSString stringWithFormat:@"move-%d.png", unitNo] rect:CGRectMake(0, 0, 24, 24)];
         unitMoveSprite2 = [UnitSprite spriteWithFile:[NSString stringWithFormat:@"move-%d.png", unitNo] rect:CGRectMake(0, 25, 24, 24)];
         movableTiles = [[NSMutableArray alloc] init];
+        attackableTiles = [[NSMutableArray alloc] init];
         status = READY;
         unitCategory = [[Footman alloc] init];
     }
@@ -100,12 +103,30 @@
 - (void)doneMove
 {
     [self _dismissMovableTiles];
-    status = READY;
+    status = ACTION;
+}
+
+- (void)doneAction
+{
+    status = DONE;
 }
 
 - (BOOL)activated
 {
     return status == ACTIVE;
+}
+
+- (void)readyToAttack
+{
+    NSMutableArray *attackableCells = [[Game sharedGame].stage attackableTiles:self];
+    for (Cell *cell in attackableCells) {
+        AttackableTileSprite *attackableTile = [AttackableTileSprite sprite];
+        attackableTile.characterId = self.characterId;
+        attackableTile.col = cell.col;
+        attackableTile.row = cell.row;
+        [attackableTiles addObject:attackableTile];
+    }
+    [attackableCells release];
 }
 
 #pragma private

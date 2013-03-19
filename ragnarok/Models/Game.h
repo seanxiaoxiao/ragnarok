@@ -12,6 +12,7 @@
 @class Character;
 @class MapSprite;
 @class MovableTileSprite;
+@class AttackableTileSprite;
 
 enum GamePhase {
     homePhase = 1,
@@ -26,11 +27,17 @@ enum GamePhase {
 
 - (void)addMovableTileAtCol:(MovableTileSprite *)tileSprite;
 
+- (void)addAttackableTileAtCol:(AttackableTileSprite *)tileSprite;
+
 - (void)moveCharacter:(Character *)character toCol:(int)col andRow:(int)row;
 
 - (void)showStatus:(Character *)character;
 
 - (void)dismissStatus;
+
+- (void)showActionMenu:(Character *)character;
+
+- (void)dismissActionMenu;
 
 @end
 

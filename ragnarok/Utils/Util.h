@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
 @class StageLayer;
+@class Character;
 
 @interface Util : NSObject
 
-+ (StageLayer *)fetchStageLayer;
++ (StageLayer *) fetchStageLayer;
 
++ (CCMenu *) getMenuByCharacter:(Character *)chraracter;
 
 @end
