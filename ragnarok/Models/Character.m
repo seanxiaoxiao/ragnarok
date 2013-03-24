@@ -23,22 +23,20 @@
 @synthesize unitMoveSprite2;
 @synthesize movingAnimation;
 @synthesize unitNo;
+@synthesize tempCol;
+@synthesize tempRow;
 @synthesize col;
 @synthesize row;
 @synthesize status;
 @synthesize movableTiles;
 @synthesize unitCategory;
 @synthesize attackableTiles;
+@synthesize isEnemy;
 
 
-- (void)finishRound
+- (void)ready
 {
     status = READY;
-}
-
-- (void)startRound
-{
-    roundFinish = false;
 }
 
 - (id)initWithUnitNo:(int) _unitNo
@@ -101,6 +99,12 @@
     }
 }
 
+- (void)prepareToMove
+{
+    tempCol = col;
+    tempRow = row;
+}
+
 - (void)doneMove
 {
     [self _dismissMovableTiles];
@@ -114,8 +118,7 @@
     opponent.healthPoint = opponent.healthPoint - damage;
     if (opponent.healthPoint <= 0) {
         [opponent die];
-    }
-    status = DONE;
+    };
 }
 
 - (void)die
@@ -127,6 +130,8 @@
 - (void)doneAction
 {
     status = DONE;
+    [self _dismissAttackableTiles];
+    [self _dismissMovableTiles];
 }
 
 - (BOOL)activated
@@ -145,6 +150,17 @@
         [attackableTiles addObject:attackableTile];
     }
     [attackableCells release];
+}
+
+- (void)cancelAction
+{
+    [self setPosition:tempCol andRow:tempRow];
+    status = READY;
+}
+
+- (BOOL)canAttack:(Character *)attackee
+{
+    return attackee.status != DEAD;
 }
 
 #pragma private
@@ -166,9 +182,5 @@
     [movableTiles removeAllObjects];
 }
 
-- (BOOL)isAttackableBy:(Character *)attacker
-{
-
-}
 
 @end

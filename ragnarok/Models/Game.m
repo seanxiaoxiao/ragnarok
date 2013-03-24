@@ -25,6 +25,7 @@ Game *sharedGame;
 {
     if (self.phase == homePhase) {
         phase = enemyPhase;
+        [self reactivateCharacters];
     }
     else {
         phase = homePhase;
@@ -44,6 +45,9 @@ Game *sharedGame;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneAction:) name:EVENT_CHARACTER_DONE_ACTION object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDecideAttack:) name:EVENT_CHARACTER_DECIDE_ATTACK object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneAttack:) name:EVENT_CHARACTER_DONE_ATTACK object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterCancelAction:) name:EVENT_CHARACTER_CANCEL_ACTION object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneCancel:) name:EVENT_CHARACTER_DONE_CANCEL object:nil];
+        
         
         stage = [[Stage alloc] initWithStageNo:stageNo];
         round = 1;
@@ -51,13 +55,15 @@ Game *sharedGame;
 
         homeCharacters = [[NSMutableArray alloc] init];
         enemyCharacters = [[NSMutableArray alloc] init];
+        
         Character *character1 = [[[Character alloc] initWithUnitNo:102] autorelease];
         [character1 setPosition:1 andRow:1];
-
         character1.characterId = 1;
+        
         Character *character2 = [[[Character alloc] initWithUnitNo:132] autorelease];
         [character2 setPosition:4 andRow:1];
         character2.characterId = 2;
+        
         Character *character3 = [[[Character alloc] initWithUnitNo:126] autorelease];
         character3.characterId = 3;
         [character3 setPosition:1 andRow:2];
@@ -72,6 +78,9 @@ Game *sharedGame;
 
 - (void)characterTouched:(NSNotification *)notification
 {
+    if (self.phase == enemyPhase) {
+        return;
+    }
     [delegate dismissStatus];
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     for (Character *character in homeCharacters) {
@@ -102,8 +111,8 @@ Game *sharedGame;
     
     Character *character = [self getCharacter:[characterId intValue]];
     if (character) {
-        character.col = [col intValue];
-        character.row = [row intValue];
+        [character prepareToMove];
+        [character setPosition:[col integerValue] andRow:[row integerValue]];
         [delegate moveCharacter:character toCol:character.col andRow:character.row];
     }
 }
@@ -116,7 +125,7 @@ Game *sharedGame;
     
     Character *attacker = [self getCharacter:[characterId intValue]];
     Character *defender = [self getCharacterAtCol:[col intValue] andRow:[row intValue]];
-    if (defender) {
+    if (defender && [attacker canAttack:defender]) {
         [attacker attack:defender];
         [delegate dismissActionMenu];
         [delegate characterAttack:attacker on:defender];
@@ -137,6 +146,7 @@ Game *sharedGame;
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     Character *character = [self getCharacter:[characterId intValue]];
     [delegate stopCharacterAnimation:character];
+    [character doneAction];
     [self checkPhase];
 }
 
@@ -160,11 +170,33 @@ Game *sharedGame;
     }
 }
 
+- (void)characterCancelAction:(NSNotification *)notification
+{
+    NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
+    Character *character = [self getCharacter:[characterId intValue]];
+    
+    if (character) {
+        [delegate dismissActionMenu];
+        [delegate cancelAction:character];
+    }
+}
+
+- (void)characterDoneCancel:(NSNotification *)notification
+{
+    NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
+    Character *character = [self getCharacter:[characterId intValue]];
+    
+    if (character) {
+        [character cancelAction];
+    }
+}
+
 - (void)loadMap
 {
     [delegate addMapBackground:stage.mapSprite];
     for (Character *character in homeCharacters) {
         [delegate addCharacter:character atCol:character.col andRow:character.row];
+        [delegate startCharacterAnimation:character];
     }
 }
 
@@ -207,6 +239,14 @@ Game *sharedGame;
             }
         }
         [self finishPhase];
+    }
+}
+
+- (void)reactivateCharacters
+{
+    for (Character *character in homeCharacters) {
+        [character ready];
+        [delegate startCharacterAnimation:character];
     }
 }
 

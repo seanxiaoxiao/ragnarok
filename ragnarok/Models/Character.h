@@ -34,8 +34,10 @@ enum CharacterStatus {
 @property (nonatomic, retain, readonly) NSString *name;
 @property (nonatomic, assign) int characterId;
 
-@property (nonatomic, assign) int row;
-@property (nonatomic, assign) int col;
+@property (nonatomic, assign, readonly) int row;
+@property (nonatomic, assign, readonly) int col;
+@property (nonatomic, assign, readonly) int tempCol;
+@property (nonatomic, assign, readonly) int tempRow;
 @property (nonatomic, assign) BOOL roundFinish;
 @property (nonatomic, assign) BOOL isEnemy;
 @property (nonatomic, assign, readonly) enum CharacterStatus status;
@@ -67,13 +69,9 @@ enum CharacterStatus {
 
 - (void)speak:(NSString *)text;
 
-- (void)faceTo:(enum Direction) direction;
+- (void)ready;
 
-- (void)finishRound;
-
-- (void)startRound;
-
-- (void)move;
+- (void)prepareToMove;
 
 - (void)setPosition: (int)_col andRow:(int)_row;
 
@@ -91,6 +89,8 @@ enum CharacterStatus {
 
 - (BOOL)activated;
 
-- (BOOL)isAttackableBy:(Character *)attacker;
+- (void)cancelAction;
+
+- (BOOL)canAttack:(Character *)attackee;
 
 @end

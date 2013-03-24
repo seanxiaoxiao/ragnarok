@@ -21,7 +21,7 @@
 @implementation StageLayer
 @synthesize hud;
 
-+(CCScene *) scene
++ (CCScene *) scene
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -39,7 +39,7 @@
 	return scene;
 }
 
-- (id)init
+- (id) init
 {
     if((self = [super init])) {
         game = [[Game alloc] initGameWithStageNo:2];
@@ -51,19 +51,19 @@
     return self;
 }
 
-- (void)onEnterTransitionDidFinish
+- (void) onEnterTransitionDidFinish
 {
     [self updateHud];
 }
 
-- (void)addMovableTileAtCol:(MovableTileSprite *)tileSprite
+- (void) addMovableTileAtCol:(MovableTileSprite *)tileSprite
 {
     [tileSprite setScale:_controller.optimalZoomOutLimit];
     tileSprite.position = CGPointMake(((tileSprite.row * 24) + 12) * _controller.optimalZoomOutLimit, ((tileSprite.col * 24) + 12) * _controller.optimalZoomOutLimit);
     [self addChild:tileSprite z:50];
 }
 
-- (void)addAttackableTileAtCol:(AttackableTileSprite *)tileSprite
+- (void) addAttackableTileAtCol:(AttackableTileSprite *)tileSprite
 {
     [tileSprite setScale:_controller.optimalZoomOutLimit];
     tileSprite.position = CGPointMake(((tileSprite.row * 24) + 12) * _controller.optimalZoomOutLimit, ((tileSprite.col * 24) + 12) * _controller.optimalZoomOutLimit);
@@ -71,7 +71,7 @@
 }
 
 
-- (void)addMapBackground:(CCSprite *)backgroundSprite
+- (void) addMapBackground:(CCSprite *)backgroundSprite
 {
     backgroundSprite.anchorPoint = ccp(0, 0);
     
@@ -85,7 +85,7 @@
     backgroundSprite.scale = _controller.optimalZoomOutLimit;
 }
 
-- (void)addCharacter:(Character *)character atCol:(int)col andRow:(int)row
+- (void) addCharacter:(Character *)character atCol:(int)col andRow:(int)row
 {
     [character.unitMoveSprite1 setScale:_controller.optimalZoomOutLimit];
     character.unitMoveSprite1.position = CGPointMake(((row * 24) + 12) * _controller.optimalZoomOutLimit, ((col * 24) + 12) * _controller.optimalZoomOutLimit);
@@ -93,18 +93,6 @@
     [character.unitMoveSprite2 setScale:_controller.optimalZoomOutLimit];
 
     [self addChild:character.unitMoveSprite1 z:100];
-    [self startCharacterAnimation:character];
-}
-
-
-- (void)stopCharacterAnimation:(Character *)character
-{
-    [character.movingAnimation stop];
-    [character.unitMoveSprite1 stopAction:character.movingAnimation];
-}
-
-- (void)startCharacterAnimation:(Character *)character
-{
     CCAnimation* animation;
     NSMutableArray *animFrames = [NSMutableArray array];
     [animFrames addObject:character.unitMoveSprite1.displayFrame];
@@ -116,11 +104,22 @@
     CCAnimate *animAction  = [CCAnimate actionWithAnimation:animation];
     CCRepeatForever *anim = [CCRepeatForever actionWithAction:animAction];
     character.movingAnimation = anim;
-    [character.unitMoveSprite1 runAction:anim];
 }
 
 
-- (void)characterAttack:(Character *)attacker on:(Character *)defender
+- (void) stopCharacterAnimation:(Character *)character
+{
+    [character.movingAnimation stop];
+    [character.unitMoveSprite1 stopAction:character.movingAnimation];
+}
+
+- (void) startCharacterAnimation:(Character *)character
+{
+    [character.unitMoveSprite1 runAction:character.movingAnimation];
+}
+
+
+- (void) characterAttack:(Character *)attacker on:(Character *)defender
 {
     CGPoint targetPoint = CGPointMake(((defender.row * 24) + 12) * _controller.optimalZoomOutLimit, ((defender.col * 24) + 12) * _controller.optimalZoomOutLimit);
     CGPoint originPoint = CGPointMake(((attacker.row * 24) + 12) * _controller.optimalZoomOutLimit, ((attacker.col * 24) + 12) * _controller.optimalZoomOutLimit);
@@ -136,7 +135,7 @@
     }], nil]];
 }
 
-- (void)moveCharacter:(Character *)character toCol:(int)col andRow:(int)row
+- (void) moveCharacter:(Character *)character toCol:(int)col andRow:(int)row
 {
     CGPoint targetPoint = CGPointMake(((row * 24) + 12) * _controller.optimalZoomOutLimit, ((col * 24) + 12) * _controller.optimalZoomOutLimit);
     [character.unitMoveSprite1 runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.5f position:targetPoint],
@@ -148,14 +147,14 @@
         }], nil]];
 }
 
-- (void)showStatus:(Character *)character
+- (void) showStatus:(Character *)character
 {
     [self dismissStatus];
     statusLayer = [[StatusLayer alloc] initWithCharacter:character];
     [[[CCDirector sharedDirector] runningScene] addChild:statusLayer];
 }
 
-- (void)dismissStatus
+- (void) dismissStatus
 {
     if (statusLayer) {
         [[[CCDirector sharedDirector] runningScene] removeChild:statusLayer cleanup:YES];
@@ -163,14 +162,14 @@
     }
 }
 
-- (void)showActionMenu:(Character *)character
+- (void) showActionMenu:(Character *)character
 {
     [self dismissActionMenu];
     actionMenu = [Util getMenuByCharacter:character];
     [self addChild:actionMenu];
 }
 
-- (void)dismissActionMenu
+- (void) dismissActionMenu
 {
     if (actionMenu) {
         [self removeChild:actionMenu cleanup:YES];
@@ -178,10 +177,22 @@
     }
 }
 
-- (void)dismissCharacter:(Character *)character
+- (void) dismissCharacter:(Character *)character
 {
     [self stopCharacterAnimation:character];
     [character.unitMoveSprite1 removeFromParentAndCleanup:YES];
+}
+
+- (void) cancelAction:(Character *)character
+{
+    CGPoint targetPoint = CGPointMake(((character.tempRow * 24) + 12) * _controller.optimalZoomOutLimit, ((character.tempCol * 24) + 12) * _controller.optimalZoomOutLimit);
+    [character.unitMoveSprite1 runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.1f position:targetPoint],
+                                          [CCCallBlock actionWithBlock:^{
+        NSMutableDictionary *orientationData = [[NSMutableDictionary alloc] init];
+        [orientationData setValue:[NSNumber numberWithInt:character.characterId] forKey:@"CharacterId"];
+        NSNotification *notification = [NSNotification notificationWithName:EVENT_CHARACTER_DONE_CANCEL object:nil userInfo:orientationData];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }], nil]];
 }
 
 

@@ -44,11 +44,18 @@
         NSNotification *notification = [NSNotification notificationWithName:EVENT_CHARACTER_DONE_ACTION object:nil userInfo:orientationData];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
     }];
+
+    CCMenuItem *cancelItem = [CCMenuItemFont itemWithString:@"Cancel" block:^(id sender) {
+        NSMutableDictionary *orientationData = [[NSMutableDictionary alloc] init];
+        [orientationData setValue:[NSNumber numberWithInt:chraracter.characterId] forKey:@"CharacterId"];
+        NSNotification *notification = [NSNotification notificationWithName:EVENT_CHARACTER_CANCEL_ACTION object:nil userInfo:orientationData];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }];
     
-    CCMenu *menu = [CCMenu menuWithItems:attackItem, doneItem, nil];
+    CCMenu *menu = [CCMenu menuWithItems:attackItem, doneItem, cancelItem, nil];
     
-    [menu alignItemsVertically];
-    [menu setPosition:ccp(size.width/2, size.height/2 - 50)];
+    [menu alignItemsVerticallyWithPadding:30];
+    [menu setPosition:ccp(size.width / 2, size.height / 2)];
 
     return menu;
 }

@@ -47,6 +47,8 @@ enum GamePhase {
 
 - (void) dismissCharacter:(Character *)character;
 
+- (void) cancelAction:(Character *)character;
+
 - (void) updateHud;
 
 @end
