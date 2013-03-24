@@ -26,19 +26,27 @@
         
         [self addChild:stageLabel];
         roundLabel = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:18];
-        roundLabel.position = ccp(122, 20);
+        roundLabel.position = ccp(132, 20);
         roundLabel.anchorPoint = ccp(0, 0.5);
         roundLabel.color = ccc3(0, 0, 0);
         
         [self addChild:roundLabel];
+        
+        phaseLabel = [CCLabelTTF labelWithString:@"" fontName:@"Marker Felt" fontSize:18];
+        phaseLabel.position = ccp(222, 20);
+        phaseLabel.anchorPoint = ccp(0, 0.5);
+        phaseLabel.color = ccc3(0, 0, 0);
+        
+        [self addChild:phaseLabel];
 	}
     return self;
 }
 
 - (void)updateStatus:(Game *)game
 {
-    stageLabel.string = [NSString stringWithFormat:@"Stage %d", game.stage.stageNo];
-    roundLabel.string = [NSString stringWithFormat:@"Round %d", game.round];
+    stageLabel.string = [NSString stringWithFormat:@"Stage: %d", game.stage.stageNo];
+    roundLabel.string = [NSString stringWithFormat:@"Round: %d", game.round];
+    phaseLabel.string = [NSString stringWithFormat:@"Phase: %d", game.phase];
 }
 
 - (void)dealloc

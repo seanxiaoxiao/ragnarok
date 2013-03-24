@@ -21,26 +21,33 @@ enum GamePhase {
 
 @protocol GameDelegate <NSObject>
 
-- (void)addMapBackground:(MapSprite *)backgroundSprite;
+- (void) addMapBackground:(MapSprite *)backgroundSprite;
 
-- (void)addCharacter:(Character *)character atCol:(int)col andRow:(int)row;
+- (void) addCharacter:(Character *)character atCol:(int)col andRow:(int)row;
 
-- (void)addMovableTileAtCol:(MovableTileSprite *)tileSprite;
+- (void) addMovableTileAtCol:(MovableTileSprite *)tileSprite;
 
-- (void)addAttackableTileAtCol:(AttackableTileSprite *)tileSprite;
+- (void) addAttackableTileAtCol:(AttackableTileSprite *)tileSprite;
 
-- (void)moveCharacter:(Character *)character toCol:(int)col andRow:(int)row;
+- (void) moveCharacter:(Character *)character toCol:(int)col andRow:(int)row;
 
-- (void)showStatus:(Character *)character;
+- (void) showStatus:(Character *)character;
 
-- (void)dismissStatus;
+- (void) dismissStatus;
 
-- (void)showActionMenu:(Character *)character;
+- (void) showActionMenu:(Character *)character;
 
-- (void)dismissActionMenu;
+- (void) dismissActionMenu;
 
-- (void)characterAttack:(Character *)attacker on:(Character *)defender;
+- (void) characterAttack:(Character *)attacker on:(Character *)defender;
 
+- (void) stopCharacterAnimation:(Character *)character;
+
+- (void) startCharacterAnimation:(Character *)character;
+
+- (void) dismissCharacter:(Character *)character;
+
+- (void) updateHud;
 
 @end
 
@@ -61,7 +68,7 @@ enum GamePhase {
 
 - (void) loadMap;
 
-- (void)characterDie:(Character *)character;
+- (void) characterDie:(Character *)character;
 
 + (Game *) sharedGame;
 

@@ -53,7 +53,7 @@
 
 - (void)onEnterTransitionDidFinish
 {
-    [hud updateStatus:[Game sharedGame]];
+    [self updateHud];
 }
 
 - (void)addMovableTileAtCol:(MovableTileSprite *)tileSprite
@@ -93,7 +93,18 @@
     [character.unitMoveSprite2 setScale:_controller.optimalZoomOutLimit];
 
     [self addChild:character.unitMoveSprite1 z:100];
-    
+    [self startCharacterAnimation:character];
+}
+
+
+- (void)stopCharacterAnimation:(Character *)character
+{
+    [character.movingAnimation stop];
+    [character.unitMoveSprite1 stopAction:character.movingAnimation];
+}
+
+- (void)startCharacterAnimation:(Character *)character
+{
     CCAnimation* animation;
     NSMutableArray *animFrames = [NSMutableArray array];
     [animFrames addObject:character.unitMoveSprite1.displayFrame];
@@ -104,8 +115,10 @@
     
     CCAnimate *animAction  = [CCAnimate actionWithAnimation:animation];
     CCRepeatForever *anim = [CCRepeatForever actionWithAction:animAction];
+    character.movingAnimation = anim;
     [character.unitMoveSprite1 runAction:anim];
 }
+
 
 - (void)characterAttack:(Character *)attacker on:(Character *)defender
 {
@@ -117,7 +130,7 @@
                                              [CCCallBlock actionWithBlock:^{
             NSMutableDictionary *orientationData = [[NSMutableDictionary alloc] init];
             [orientationData setValue:[NSNumber numberWithInt:attacker.characterId] forKey:@"CharacterId"];
-            NSNotification *notification = [NSNotification notificationWithName:EVENT_CHARACTER_DONE_MOVE object:nil userInfo:orientationData];
+            NSNotification *notification = [NSNotification notificationWithName:EVENT_CHARACTER_DONE_ATTACK object:nil userInfo:orientationData];
             [[NSNotificationCenter defaultCenter] postNotification:notification];
         }], nil]];
     }], nil]];
@@ -165,6 +178,12 @@
     }
 }
 
+- (void)dismissCharacter:(Character *)character
+{
+    [self stopCharacterAnimation:character];
+    [character.unitMoveSprite1 removeFromParentAndCleanup:YES];
+}
+
 
 #pragma mark TouchesMethod
 - (void) showMenu
@@ -203,6 +222,11 @@
     CGPoint point = [touch locationInView: [touch view]];
     point = [[CCDirector sharedDirector] convertToGL: point];
     return [self convertToNodeSpace:point];
+}
+
+- (void) updateHud
+{
+    [hud updateStatus:[Game sharedGame]];
 }
 
 - (void) closeMenu

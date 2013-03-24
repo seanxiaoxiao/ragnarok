@@ -78,14 +78,7 @@
 	
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
-	navController_.navigationBarHidden = NO;
-    navController_.navigationBar.barStyle = UIBarStyleBlack;
-    
-    UIBarButtonItem *menuButton = [[[UIBarButtonItem alloc] initWithTitle:@"Menu"
-                                                              style:UIBarButtonSystemItemBookmarks
-                                                             target:self
-                                                             action:@selector(showMenu)] autorelease];
-    [director_.navigationItem setRightBarButtonItem:menuButton];
+	navController_.navigationBarHidden = YES;
 	
 	// set the Navigation Controller as the root view controller
 	[window_ addSubview:navController_.view];	// Generates flicker.

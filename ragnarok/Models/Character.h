@@ -10,6 +10,7 @@
 
 @class UnitSprite;
 @class UnitCategory;
+@class CCRepeatForever;
 
 enum Direction {
     UP = 0,
@@ -36,12 +37,14 @@ enum CharacterStatus {
 @property (nonatomic, assign) int row;
 @property (nonatomic, assign) int col;
 @property (nonatomic, assign) BOOL roundFinish;
+@property (nonatomic, assign) BOOL isEnemy;
 @property (nonatomic, assign, readonly) enum CharacterStatus status;
 
 @property (nonatomic, retain, readonly) UnitCategory *unitCategory;
 @property (nonatomic, assign, readonly) int unitNo;
 @property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite1;
 @property (nonatomic, retain, readonly) UnitSprite *unitMoveSprite2;
+@property (nonatomic, retain) CCRepeatForever *movingAnimation;
 
 @property (nonatomic, retain, readonly) NSMutableArray *movableTiles;
 @property (nonatomic, retain, readonly) NSMutableArray *attackableTiles;
@@ -87,5 +90,7 @@ enum CharacterStatus {
 - (void)deactivate;
 
 - (BOOL)activated;
+
+- (BOOL)isAttackableBy:(Character *)attacker;
 
 @end

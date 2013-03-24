@@ -27,6 +27,7 @@
     if (self) {
         //characterDirectory = [[NSMutableDictionary alloc] init];
         mapSprite = [MapSprite spriteWithFile:[NSString stringWithFormat:@"stage%d.png", stageNo]];
+        _stageNo = stageNo;
         width = 20;
         height = 20;
         cells = malloc(height * sizeof(Cell**));

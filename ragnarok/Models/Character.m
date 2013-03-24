@@ -21,6 +21,7 @@
 @synthesize roundFinish;
 @synthesize unitMoveSprite1;
 @synthesize unitMoveSprite2;
+@synthesize movingAnimation;
 @synthesize unitNo;
 @synthesize col;
 @synthesize row;
@@ -163,6 +164,11 @@
         [movableTile removeFromParentAndCleanup:YES];
     }
     [movableTiles removeAllObjects];
+}
+
+- (BOOL)isAttackableBy:(Character *)attacker
+{
+
 }
 
 @end

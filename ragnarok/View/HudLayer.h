@@ -15,6 +15,7 @@
 @interface HudLayer : CCLayerColor {
     CCLabelTTF *stageLabel;
     CCLabelTTF *roundLabel;
+    CCLabelTTF *phaseLabel;
 }
 
 - (void)updateStatus:(Game *)game;

@@ -30,6 +30,7 @@ Game *sharedGame;
         phase = homePhase;
         round = round + 1;
     }
+    [delegate updateHud];
 }
 
 - (id)initGameWithStageNo:(int)stageNo
@@ -42,9 +43,12 @@ Game *sharedGame;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterReadyAttack:) name:EVENT_CHARACTER_READY_ATTACK object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneAction:) name:EVENT_CHARACTER_DONE_ACTION object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDecideAttack:) name:EVENT_CHARACTER_DECIDE_ATTACK object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneAttack:) name:EVENT_CHARACTER_DONE_ATTACK object:nil];
         
         stage = [[Stage alloc] initWithStageNo:stageNo];
+        round = 1;
+        phase = homePhase;
+
         homeCharacters = [[NSMutableArray alloc] init];
         enemyCharacters = [[NSMutableArray alloc] init];
         Character *character1 = [[[Character alloc] initWithUnitNo:102] autorelease];
@@ -71,7 +75,7 @@ Game *sharedGame;
     [delegate dismissStatus];
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     for (Character *character in homeCharacters) {
-        if (character.status != READY && character.status != DONE) {
+        if (character.status != READY && character.status != DONE && character.status != DEAD) {
             return;
         }
     }
@@ -128,12 +132,22 @@ Game *sharedGame;
     [character doneMove];
 }
 
+- (void)characterDoneAttack:(NSNotification *)notification
+{
+    NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
+    Character *character = [self getCharacter:[characterId intValue]];
+    [delegate stopCharacterAnimation:character];
+    [self checkPhase];
+}
+
 - (void)characterDoneAction:(NSNotification *)notification
 {
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     Character *character = [self getCharacter:[characterId intValue]];
     [character doneAction];
     [delegate dismissActionMenu];
+    [delegate stopCharacterAnimation:character];
+    [self checkPhase];
 }
 
 - (void)characterReadyAttack:(NSNotification *)notification
@@ -181,7 +195,19 @@ Game *sharedGame;
 
 - (void)characterDie:(Character *)character
 {
-    
+    [delegate dismissCharacter:character];
+}
+
+- (void)checkPhase
+{
+    if (self.phase == homePhase) {
+        for (Character *homeCharacter in homeCharacters) {
+            if (homeCharacter.status != DONE && homeCharacter.status != DEAD) {
+                return;
+            }
+        }
+        [self finishPhase];
+    }
 }
 
 @end
