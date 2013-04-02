@@ -10,6 +10,7 @@
 #import "Stage.h"
 #import "Character.h"
 #import "Constants.h"
+#import "EnemyCharacter.h"
 
 Game *sharedGame;
 
@@ -56,21 +57,43 @@ Game *sharedGame;
         homeCharacters = [[NSMutableArray alloc] init];
         enemyCharacters = [[NSMutableArray alloc] init];
         
-        Character *character1 = [[[Character alloc] initWithUnitNo:102] autorelease];
-        [character1 setPosition:1 andRow:1];
+        Character *character1 = [[[Character alloc] initWithUnitNo:120] autorelease];
+        [character1 setPosition:7 andRow:2];
         character1.characterId = 1;
         
-        Character *character2 = [[[Character alloc] initWithUnitNo:132] autorelease];
-        [character2 setPosition:4 andRow:1];
+        Character *character2 = [[[Character alloc] initWithUnitNo:142] autorelease];
+        [character2 setPosition:5 andRow:2];
         character2.characterId = 2;
         
-        Character *character3 = [[[Character alloc] initWithUnitNo:126] autorelease];
+        Character *character3 = [[[Character alloc] initWithUnitNo:141] autorelease];
         character3.characterId = 3;
-        [character3 setPosition:1 andRow:2];
+        [character3 setPosition:9 andRow:2];
 
         [homeCharacters addObject:character1];
         [homeCharacters addObject:character2];
         [homeCharacters addObject:character3];
+        
+        EnemyCharacter *enemy1 = [[[EnemyCharacter alloc] initWithUnitNo:126] autorelease];
+        [enemy1 setPosition:7 andRow:12];
+        enemy1.characterId = 4;
+        
+        EnemyCharacter *enemy2 = [[[EnemyCharacter alloc] initWithUnitNo:102] autorelease];
+        [enemy2 setPosition:9 andRow:4];
+        enemy2.characterId = 4;
+        
+        EnemyCharacter *enemy3 = [[[EnemyCharacter alloc] initWithUnitNo:128] autorelease];
+        [enemy3 setPosition:11 andRow:12];
+        enemy3.characterId = 4;
+        
+        EnemyCharacter *enemy4 = [[[EnemyCharacter alloc] initWithUnitNo:132] autorelease];
+        [enemy4 setPosition:9 andRow:14];
+        enemy4.characterId = 4;
+        
+        [enemyCharacters addObject:enemy1];
+        [enemyCharacters addObject:enemy2];
+        [enemyCharacters addObject:enemy3];
+        [enemyCharacters addObject:enemy4];
+        
         sharedGame = self;
     }
     return self;
@@ -198,6 +221,11 @@ Game *sharedGame;
         [delegate addCharacter:character atCol:character.col andRow:character.row];
         [delegate startCharacterAnimation:character];
     }
+    
+    for (EnemyCharacter *character in enemyCharacters) {
+        [delegate addCharacter:character atCol:character.col andRow:character.row];
+        [delegate startCharacterAnimation:character];
+    }
 }
 
 + (Game *)sharedGame
@@ -212,12 +240,22 @@ Game *sharedGame;
             return character;
         }
     }
+    for (EnemyCharacter *character in enemyCharacters) {
+        if (character.characterId == characterId) {
+            return character;
+        }
+    }
     return nil;
 }
 
 - (Character *)getCharacterAtCol: (int)col andRow: (int)row
 {
     for (Character *character in homeCharacters) {
+        if (character.col == col && character.row == row) {
+            return character;
+        }
+    }
+    for (EnemyCharacter *character in enemyCharacters) {
         if (character.col == col && character.row == row) {
             return character;
         }

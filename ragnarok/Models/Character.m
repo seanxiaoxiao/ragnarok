@@ -50,6 +50,7 @@
         attackableTiles = [[NSMutableArray alloc] init];
         status = READY;
         unitCategory = [[Footman alloc] init];
+        isEnemy = NO;
     }
     return self;
 }
@@ -155,12 +156,13 @@
 - (void)cancelAction
 {
     [self setPosition:tempCol andRow:tempRow];
+    [self _dismissAttackableTiles];
     status = READY;
 }
 
 - (BOOL)canAttack:(Character *)attackee
 {
-    return attackee.status != DEAD;
+    return attackee.status != DEAD && self.isEnemy != attackee.isEnemy;
 }
 
 #pragma private

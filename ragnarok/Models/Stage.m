@@ -11,6 +11,7 @@
 #import "MapSprite.h"
 #import "Cell.h"
 #import "Character.h"
+#import "EnemyCharacter.h"
 #import "UnitCategory.h"
 #import "Game.h"
 
@@ -98,6 +99,11 @@
 {
     Game *game = [Game sharedGame];
     for (Character *character in game.homeCharacters) {
+        if (character.col == col && character.row == row) {
+            return NO;
+        }
+    }
+    for (EnemyCharacter *character in game.enemyCharacters) {
         if (character.col == col && character.row == row) {
             return NO;
         }
