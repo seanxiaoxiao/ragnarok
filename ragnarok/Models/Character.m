@@ -36,7 +36,9 @@
 
 - (void)ready
 {
-    status = READY;
+    if (status != DEAD) {
+        status = READY;
+    }
 }
 
 - (id)initWithUnitNo:(int) _unitNo
@@ -142,6 +144,7 @@
 
 - (void)readyToAttack
 {
+    [self _dismissAttackableTiles];
     NSMutableArray *attackableCells = [[Game sharedGame].stage attackableTiles:self];
     for (Cell *cell in attackableCells) {
         AttackableTileSprite *attackableTile = [AttackableTileSprite sprite];

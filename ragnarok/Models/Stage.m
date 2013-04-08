@@ -104,7 +104,7 @@
         }
     }
     for (EnemyCharacter *character in game.enemyCharacters) {
-        if (character.col == col && character.row == row) {
+        if (character.col == col && character.row == row && character.status != DEAD) {
             return NO;
         }
     }

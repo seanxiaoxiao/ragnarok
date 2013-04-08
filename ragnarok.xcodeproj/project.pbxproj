@@ -158,6 +158,8 @@
 		0097F31416AB6BFF00302284 /* stage42.png in Resources */ = {isa = PBXBuildFile; fileRef = 0097F31216AB6BFF00302284 /* stage42.png */; };
 		00A745E016C1AB320003F503 /* MapSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A745DF16C1AB320003F503 /* MapSprite.m */; };
 		00A745E316C1CB6E0003F503 /* UnitSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A745E216C1CB6E0003F503 /* UnitSprite.m */; };
+		00B56FEB1712952700C815FC /* MessageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B56FEA1712952700C815FC /* MessageLayer.m */; };
+		00B56FEE1712A5F000C815FC /* DialogBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B56FED1712A5F000C815FC /* DialogBox.m */; };
 		00CD7C0C16B347DF0031D83C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7C0B16B347DF0031D83C /* Constants.m */; };
 		00D60D3C16AF625F0051F30A /* UnitCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D3B16AF625F0051F30A /* UnitCategory.m */; };
 		00D60D3F16AF639D0051F30A /* Footman.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D60D3E16AF639D0051F30A /* Footman.m */; };
@@ -470,6 +472,10 @@
 		00A745DF16C1AB320003F503 /* MapSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapSprite.m; sourceTree = "<group>"; };
 		00A745E116C1CB6E0003F503 /* UnitSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSprite.h; sourceTree = "<group>"; };
 		00A745E216C1CB6E0003F503 /* UnitSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSprite.m; sourceTree = "<group>"; };
+		00B56FE91712952600C815FC /* MessageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageLayer.h; sourceTree = "<group>"; };
+		00B56FEA1712952700C815FC /* MessageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageLayer.m; sourceTree = "<group>"; };
+		00B56FEC1712A5F000C815FC /* DialogBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogBox.h; sourceTree = "<group>"; };
+		00B56FED1712A5F000C815FC /* DialogBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogBox.m; sourceTree = "<group>"; };
 		00CD7C0A16B347DF0031D83C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Utils/Constants.h; sourceTree = "<group>"; };
 		00CD7C0B16B347DF0031D83C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Utils/Constants.m; sourceTree = "<group>"; };
 		00D60D3A16AF625F0051F30A /* UnitCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitCategory.h; path = UnitCategory/UnitCategory.h; sourceTree = "<group>"; };
@@ -1064,6 +1070,10 @@
 				005D0D3716CC3B7C00146BA0 /* CharacterInfoLayer.m */,
 				0087CECF16F6D6BB00435692 /* AttackableTileSprite.h */,
 				0087CED016F6D6BB00435692 /* AttackableTileSprite.m */,
+				00B56FE91712952600C815FC /* MessageLayer.h */,
+				00B56FEA1712952700C815FC /* MessageLayer.m */,
+				00B56FEC1712A5F000C815FC /* DialogBox.h */,
+				00B56FED1712A5F000C815FC /* DialogBox.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1279,6 +1289,8 @@
 				0087CEBE16F6558C00435692 /* StatusLayer.m in Sources */,
 				0087CED116F6D6BC00435692 /* AttackableTileSprite.m in Sources */,
 				00916898170AA6E6002BFEB9 /* EnemyCharacter.m in Sources */,
+				00B56FEB1712952700C815FC /* MessageLayer.m in Sources */,
+				00B56FEE1712A5F000C815FC /* DialogBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

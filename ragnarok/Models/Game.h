@@ -49,6 +49,8 @@ enum GamePhase {
 
 - (void) cancelAction:(Character *)character;
 
+- (void) displayMessage:(NSString *)message;
+
 - (void) updateHud;
 
 @end

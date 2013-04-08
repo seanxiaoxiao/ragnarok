@@ -14,17 +14,23 @@
 @class HudLayer;
 @class StatusLayer;
 @class CCPanZoomController;
+@class MessageLayer;
+@class DialogBox;
 
 @interface StageLayer : CCLayer<GameDelegate> {
     CCMenu *menu;
     CCPanZoomController *_controller;
     Game *game;
     HudLayer *hud;
+    MessageLayer *messageLayer;
     StatusLayer *statusLayer;
+    DialogBox *dialogBox;
     CCMenu *actionMenu;
 }
 
-@property (nonatomic,retain) HudLayer *hud;
+@property (nonatomic, retain) HudLayer *hud;
+@property (nonatomic, retain) DialogBox *dialogBox;
+@property (nonatomic, retain) MessageLayer *messageLayer;
 
 + (CCScene *) scene;
 

@@ -26,11 +26,13 @@ Game *sharedGame;
 {
     if (self.phase == homePhase) {
         phase = enemyPhase;
-        [self reactivateCharacters];
+        [self enemyAction];
     }
     else {
         phase = homePhase;
         round = round + 1;
+        [delegate displayMessage:[NSString stringWithFormat:@"Round %d", self.round]];
+        [self reactivateCharacters];
     }
     [delegate updateHud];
 }
@@ -93,7 +95,7 @@ Game *sharedGame;
         [enemyCharacters addObject:enemy2];
         [enemyCharacters addObject:enemy3];
         [enemyCharacters addObject:enemy4];
-        
+                
         sharedGame = self;
     }
     return self;
@@ -276,13 +278,30 @@ Game *sharedGame;
                 return;
             }
         }
-        [self finishPhase];
     }
+    else if (self.phase == enemyPhase) {
+        for (Character *enemyCharacter in enemyCharacters) {
+            if (enemyCharacter.status != DONE && enemyCharacter.status != DEAD) {
+                return;
+            }
+        }
+    }
+    [self finishPhase];
 }
+
+- (void)enemyAction
+{
+    [self finishPhase];
+}
+
 
 - (void)reactivateCharacters
 {
     for (Character *character in homeCharacters) {
+        [character ready];
+        [delegate startCharacterAnimation:character];
+    }
+    for (Character *character in enemyCharacters) {
         [character ready];
         [delegate startCharacterAnimation:character];
     }

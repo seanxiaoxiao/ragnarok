@@ -17,9 +17,12 @@
 #import "HudLayer.h"
 #import "StatusLayer.h"
 #import "Util.h"
+#import "MessageLayer.h"
 
 @implementation StageLayer
 @synthesize hud;
+@synthesize messageLayer;
+@synthesize dialogBox;
 
 + (CCScene *) scene
 {
@@ -32,8 +35,13 @@
     [scene addChild: layer];
     
     HudLayer *hudLayer = [HudLayer node];
+    MessageLayer *messageLayer = [MessageLayer node];
+    
 	[scene addChild: hudLayer];
+    [scene addChild: messageLayer];
+
     layer.hud = hudLayer;
+    layer.messageLayer = messageLayer;
 
 	// return the scene
 	return scene;
@@ -54,6 +62,7 @@
 - (void) onEnterTransitionDidFinish
 {
     [self updateHud];
+    [self displayMessage:[NSString stringWithFormat:@"Round %d", [Game sharedGame].round]];
 }
 
 - (void) addMovableTileAtCol:(MovableTileSprite *)tileSprite
@@ -109,12 +118,15 @@
 
 - (void) stopCharacterAnimation:(Character *)character
 {
-    [character.movingAnimation stop];
-    [character.unitMoveSprite1 stopAction:character.movingAnimation];
+    if (character.movingAnimation) {
+        [character.movingAnimation stop];
+        [character.unitMoveSprite1 stopAction:character.movingAnimation];
+    }
 }
 
 - (void) startCharacterAnimation:(Character *)character
 {
+    [self stopCharacterAnimation:character];
     [character.unitMoveSprite1 runAction:character.movingAnimation];
 }
 
@@ -238,6 +250,12 @@
 - (void) updateHud
 {
     [hud updateStatus:[Game sharedGame]];
+    
+}
+
+- (void) displayMessage:(NSString *)message
+{
+    [messageLayer showWithMessage:message];
 }
 
 - (void) closeMenu
