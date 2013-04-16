@@ -21,6 +21,7 @@ Game *sharedGame;
 @synthesize homeCharacters;
 @synthesize enemyCharacters;
 @synthesize delegate;
+@synthesize activeEnemy;
 
 - (void)finishPhase
 {
@@ -291,6 +292,9 @@ Game *sharedGame;
 
 - (void)enemyAction
 {
+    for (EnemyCharacter *enemyCharacter in enemyCharacters) {
+        self.activeEnemy = enemyCharacter;
+    }
     [self finishPhase];
 }
 

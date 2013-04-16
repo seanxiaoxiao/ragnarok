@@ -26,10 +26,12 @@
 
 - (id)initWithStageNo:(int)stageNo;
 
-- (Cell *)getCellAtCol: (int)col andRow:(int)row;
-
 - (NSMutableArray *)attackableTiles:(Character *)character;
 
+- (NSArray *)attackableCharacters:(Character *)character;
+
 - (NSMutableArray *)movableTiles:(Character *)character;
+
+- (NSArray *)reachableCharacters:(Character *)character;
 
 @end

@@ -56,11 +56,62 @@
     return tiles;
 }
 
+- (NSArray *)attackableCharacters:(Character *)character
+{
+    NSMutableArray *characters = [[NSMutableArray alloc] init];
+    [self _addAttackableCharacter:characters atCol:character.col andRow:character.row - 1];
+    [self _addAttackableCharacter:characters atCol:character.col andRow:character.row + 1];
+    [self _addAttackableCharacter:characters atCol:character.col - 1 andRow:character.row];
+    [self _addAttackableCharacter:characters atCol:character.col + 1 andRow:character.row];
+    return characters;
+}
+
+- (void)_addAttackableCharacter:(NSMutableArray *)characters atCol:(int)col andRow:(int)row
+{
+    Character *reachable = [self _characterAtCol:col andRow:row];
+    if (reachable != nil) {
+        [characters addObject:reachable];
+    }
+}
+
+
 - (void)_addAttackableTiles:(NSMutableArray *)tiles atCol:(int)col andRow:(int)row
 {
     if (row >= 0 && row < width && col >= 0 && col < height) {
         [tiles addObject:cells[col][row]];
     }
+}
+
+- (NSArray *)reachableCharacters:(Character *)character
+{
+    int maxCount = character.unitCategory.moves;
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            cells[i][j].used = NO;
+        }
+    }
+    NSMutableArray *characters = [[NSMutableArray alloc] init];
+    [self _addReachableCharacter:characters atCol:character.col andRow:character.row withRemain:maxCount];
+    return characters;
+}
+
+- (void)_addReachableCharacter:(NSMutableArray *)characters atCol:(int)col andRow:(int)row withRemain:(int)moveRemain
+{
+    if (row >= 0 && row < width && col >= 0 && col < height && moveRemain >= 0 && cells[col][row].used == NO) {
+        cells[col][row].used = YES;
+        Character *reachable = [self _characterAtCol:col andRow:row];
+        if (reachable != nil) {
+            [characters addObject:reachable];
+        }
+    }
+    if (row < 0 || row >= width || col < 0 || col >= height || moveRemain == 0) {
+        return;
+    }
+    
+    [self _addReachableCharacter:characters atCol:col andRow:row - 1 withRemain:moveRemain - cells[col][row].moveCost];
+    [self _addReachableCharacter:characters atCol:col andRow:row + 1 withRemain:moveRemain - cells[col][row].moveCost];
+    [self _addReachableCharacter:characters atCol:col - 1 andRow:row withRemain:moveRemain - cells[col][row].moveCost];
+    [self _addReachableCharacter:characters atCol:col + 1 andRow:row withRemain:moveRemain - cells[col][row].moveCost];
 }
 
 - (NSMutableArray *)movableTiles:(Character *)character
@@ -111,6 +162,16 @@
     return YES;
 }
 
+- (Character *)_characterAtCol:(int)col andRow:(int)row
+{
+    Game *game = [Game sharedGame];
+    for (Character *character in game.homeCharacters) {
+        if (character.col == col && character.row == row) {
+            return character;
+        }
+    }
+    return nil;
+}
 
 
 @end

@@ -65,6 +65,7 @@ enum GamePhase {
 @property (nonatomic, retain) NSMutableArray *homeCharacters;
 @property (nonatomic, retain) NSMutableArray *enemyCharacters;
 @property (nonatomic, retain) id<GameDelegate> delegate;
+@property (nonatomic, retain) Character* activeEnemy;
 
 - (void) finishPhase;
 

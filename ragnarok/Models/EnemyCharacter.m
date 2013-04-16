@@ -15,7 +15,7 @@
 
 @implementation EnemyCharacter
 
-
+@synthesize conditions;
 
 - (id)initWithUnitNo:(int) _unitNo
 {
@@ -23,5 +23,11 @@
     super.isEnemy = YES;
     return self;
 }
+
+- (void) moveToCol: (int)col andRow: (int)row
+{
+    
+}
+
 
 @end

@@ -161,9 +161,6 @@
 
 - (void) showStatus:(Character *)character
 {
-    [self dismissStatus];
-    statusLayer = [[StatusLayer alloc] initWithCharacter:character];
-    [[[CCDirector sharedDirector] runningScene] addChild:statusLayer];
 }
 
 - (void) dismissStatus
