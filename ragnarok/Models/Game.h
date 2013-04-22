@@ -12,6 +12,7 @@
 @class Character;
 @class MapSprite;
 @class MovableTileSprite;
+@class EnemyCharacter;
 @class AttackableTileSprite;
 
 enum GamePhase {
@@ -65,7 +66,8 @@ enum GamePhase {
 @property (nonatomic, retain) NSMutableArray *homeCharacters;
 @property (nonatomic, retain) NSMutableArray *enemyCharacters;
 @property (nonatomic, retain) id<GameDelegate> delegate;
-@property (nonatomic, retain) Character* activeEnemy;
+@property (nonatomic, retain) EnemyCharacter* activeEnemy;
+@property (nonatomic, assign) int activeEnemyIndex;
 
 - (void) finishPhase;
 

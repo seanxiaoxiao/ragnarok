@@ -13,13 +13,6 @@
 @implementation Condition
 @synthesize action;
 
-- (void) doAction:(NSArray *)reachableCharacters
-{
-    Character *selectedOne = [self select:reachableCharacters];
-    if (selectedOne) {
-        [action doActionToCol:selectedOne.col AndRow:selectedOne.row];
-    }
-}
 
 
 

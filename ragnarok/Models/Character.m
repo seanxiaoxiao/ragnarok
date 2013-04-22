@@ -168,6 +168,11 @@
     return attackee.status != DEAD && self.isEnemy != attackee.isEnemy;
 }
 
+- (int)moves
+{
+    return self.unitCategory.moves;
+}
+
 #pragma private
 - (void)_dismissAttackableTiles
 {
@@ -186,6 +191,7 @@
     }
     [movableTiles removeAllObjects];
 }
+
 
 
 @end

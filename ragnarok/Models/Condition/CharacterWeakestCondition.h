@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Condition.h"
 
-@interface CharacterWeakest : Condition
+@interface CharacterWeakestCondition : Condition
 
 @end

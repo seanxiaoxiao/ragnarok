@@ -12,10 +12,13 @@
 
 @interface EnemyCharacter : Character
 
-@property (atomic, retain) NSArray *conditions;
+@property (atomic, retain) NSMutableArray *moveConditions;
+@property (atomic, retain) NSMutableArray *attackConditions;
 
 - (void) moveToCol: (int)col andRow: (int)row;
 
+- (void) moveAction;
 
+- (void) attackAction;
 
 @end

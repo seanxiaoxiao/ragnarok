@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Condition.h"
 
-@interface CharacterNearest : Condition
+@interface CharacterNearestCondition : Condition
 
 
 

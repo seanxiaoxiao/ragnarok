@@ -11,6 +11,16 @@
 #import "Character.h"
 #import "Constants.h"
 #import "EnemyCharacter.h"
+#import "Action.h"
+#import "Condition.h"
+#import "CharacterNearestCondition.h"
+#import "CharacterWeakestCondition.h"
+#import "DefaultCondition.h"
+#import "MoveToCharacterAction.h"
+#import "NoAction.h"
+#import "AttackAction.h"
+#import "MoveToPlaceAction.h"
+
 
 Game *sharedGame;
 
@@ -22,12 +32,16 @@ Game *sharedGame;
 @synthesize enemyCharacters;
 @synthesize delegate;
 @synthesize activeEnemy;
+@synthesize activeEnemyIndex;
 
 - (void)finishPhase
 {
     if (self.phase == homePhase) {
         phase = enemyPhase;
-        [self enemyAction];
+        activeEnemyIndex = 0;
+        activeEnemy = nil;
+        NSNotification *notification = [NSNotification notificationWithName:EVENT_ENEMY_NEXT object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
     }
     else {
         phase = homePhase;
@@ -51,7 +65,7 @@ Game *sharedGame;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneAttack:) name:EVENT_CHARACTER_DONE_ATTACK object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterCancelAction:) name:EVENT_CHARACTER_CANCEL_ACTION object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneCancel:) name:EVENT_CHARACTER_DONE_CANCEL object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enemyNext:) name:EVENT_ENEMY_NEXT object:nil];
         
         stage = [[Stage alloc] initWithStageNo:stageNo];
         round = 1;
@@ -90,13 +104,49 @@ Game *sharedGame;
         
         EnemyCharacter *enemy4 = [[[EnemyCharacter alloc] initWithUnitNo:132] autorelease];
         [enemy4 setPosition:9 andRow:14];
-        enemy4.characterId = 4;
+        enemy4.characterId = 4;        
         
         [enemyCharacters addObject:enemy1];
         [enemyCharacters addObject:enemy2];
         [enemyCharacters addObject:enemy3];
         [enemyCharacters addObject:enemy4];
-                
+        
+        NoAction *noActon = [[NoAction alloc] init];
+        DefaultCondition *defaultMoveWithNoAction = [[DefaultCondition alloc] init];
+        defaultMoveWithNoAction.action = noActon;
+        
+        MoveToPlaceAction *moveToPlaceActon = [[MoveToPlaceAction alloc] init];
+        DefaultCondition *defaultMoveWithMoveToPlace = [[DefaultCondition alloc] init];
+        defaultMoveWithMoveToPlace.action = moveToPlaceActon;
+        
+        AttackAction *attackAction = [[AttackAction alloc] init];
+        MoveToCharacterAction *moveAction = [[MoveToCharacterAction alloc] init];
+        
+        CharacterNearestCondition *nearestWithMove = [[CharacterNearestCondition alloc] init];
+        CharacterNearestCondition *nearestWithAttack = [[CharacterNearestCondition alloc] init];
+        CharacterWeakestCondition *weakestWithMove = [[CharacterWeakestCondition alloc] init];
+        CharacterWeakestCondition *weakestWithAttack = [[CharacterWeakestCondition alloc] init];
+        nearestWithMove.action = moveAction;
+        nearestWithAttack.action = attackAction;
+        weakestWithMove.action = moveAction;
+        weakestWithAttack.action = attackAction;
+        
+        [enemy4.moveConditions addObject:weakestWithMove];
+        [enemy4.moveConditions addObject:defaultMoveWithNoAction];
+        [enemy4.attackConditions addObject:weakestWithAttack];
+        
+        [enemy3.moveConditions addObject:nearestWithAttack];
+        [enemy3.moveConditions addObject:defaultMoveWithNoAction];
+        [enemy3.attackConditions addObject:nearestWithAttack];
+        
+        [enemy1.moveConditions addObject:nearestWithAttack];
+        [enemy1.moveConditions addObject:defaultMoveWithNoAction];
+        [enemy1.attackConditions addObject:nearestWithAttack];
+        
+        [enemy2.moveConditions addObject:nearestWithAttack];
+        [enemy2.moveConditions addObject:defaultMoveWithMoveToPlace];
+        [enemy2.attackConditions addObject:nearestWithAttack];
+        
         sharedGame = self;
     }
     return self;
@@ -290,12 +340,34 @@ Game *sharedGame;
     [self finishPhase];
 }
 
-- (void)enemyAction
+- (void)enemyNext
 {
-    for (EnemyCharacter *enemyCharacter in enemyCharacters) {
-        self.activeEnemy = enemyCharacter;
+    if (activeEnemyIndex < [enemyCharacters count]) {
+        activeEnemy = [enemyCharacters objectAtIndex:activeEnemyIndex++];
+        NSNotification *notification = [NSNotification notificationWithName:EVENT_ENEMY_MOVE object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
     }
-    [self finishPhase];
+    else {
+        [self finishPhase];
+    }
+}
+
+- (void)enemyMove
+{
+    if (activeEnemy) {
+        [activeEnemy moveAction];
+        NSNotification *notification = [NSNotification notificationWithName:EVENT_ENEMY_ATTACK object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }
+}
+
+- (void)enemyAttack
+{
+    if (activeEnemy) {
+        [activeEnemy attackAction];
+        NSNotification *notification = [NSNotification notificationWithName:EVENT_ENEMY_NEXT object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }
 }
 
 

@@ -115,7 +115,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "74"
          endingLineNumber = "74"
-         landmarkName = "-movableTiles:"
+         landmarkName = "-_addAttackableCharacter:atCol:andRow:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -128,8 +128,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "76"
          endingLineNumber = "76"
-         landmarkName = "-movableTiles:"
-         landmarkType = "5">
+         landmarkName = "@implementation Stage"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -167,7 +167,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "163"
          endingLineNumber = "163"
-         landmarkName = "-characterDoneMove:"
+         landmarkName = "-characterTouched:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -180,7 +180,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "161"
          endingLineNumber = "161"
-         landmarkName = "-characterDoneMove:"
+         landmarkName = "-characterTouched:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -193,8 +193,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "238"
          endingLineNumber = "238"
-         landmarkName = "-getCharacter:"
-         landmarkType = "5">
+         landmarkName = "@implementation Game"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -349,7 +349,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "156"
          endingLineNumber = "156"
-         landmarkName = "-characterDecideAttack:"
+         landmarkName = "-characterTouched:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -362,7 +362,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "152"
          endingLineNumber = "152"
-         landmarkName = "-characterDecideAttack:"
+         landmarkName = "-initGameWithStageNo:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -375,7 +375,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "255"
          endingLineNumber = "255"
-         landmarkName = "-getCharacterAtCol:andRow:"
+         landmarkName = "-characterCancelAction:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -388,7 +388,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "256"
          endingLineNumber = "256"
-         landmarkName = "-getCharacterAtCol:andRow:"
+         landmarkName = "-characterCancelAction:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -401,7 +401,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "153"
          endingLineNumber = "153"
-         landmarkName = "-characterDecideAttack:"
+         landmarkName = "-initGameWithStageNo:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -414,8 +414,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "154"
          endingLineNumber = "154"
-         landmarkName = "-characterDecideAttack:"
-         landmarkType = "5">
+         landmarkName = "@implementation Game"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -466,7 +466,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "111"
          endingLineNumber = "111"
-         landmarkName = "-characterTouched:"
+         landmarkName = "-initGameWithStageNo:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -479,7 +479,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "275"
          endingLineNumber = "275"
-         landmarkName = "-checkPhase"
+         landmarkName = "-loadMap"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -492,7 +492,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "280"
          endingLineNumber = "280"
-         landmarkName = "-checkPhase"
+         landmarkName = "-loadMap"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -544,7 +544,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "227"
          endingLineNumber = "227"
-         landmarkName = "-loadMap"
+         landmarkName = "-characterDoneAttack:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -570,8 +570,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "22"
          endingLineNumber = "22"
-         landmarkName = "-initWithUnitNo:"
-         landmarkType = "5">
+         landmarkName = "@implementation EnemyCharacter"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -622,7 +622,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "304"
          endingLineNumber = "304"
-         landmarkName = "-reactivateCharacters"
+         landmarkName = "-getCharacterAtCol:andRow:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -661,8 +661,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "32"
          endingLineNumber = "32"
-         landmarkName = "-finishPhase"
-         landmarkType = "5">
+         landmarkName = "enemyCharacters"
+         landmarkType = "19">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"

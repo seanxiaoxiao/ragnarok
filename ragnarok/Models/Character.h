@@ -93,4 +93,6 @@ enum CharacterStatus {
 
 - (BOOL)canAttack:(Character *)attackee;
 
+- (int)moves;
+
 @end

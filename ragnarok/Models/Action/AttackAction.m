@@ -13,7 +13,7 @@
 @implementation AttackAction
 
 
-- (void)doActionToCol: (int)col AndRow: (int)Row
+- (void)doActionTo: (id)target
 {
     Character *activeCharacer = [Game sharedGame].activeEnemy;
 

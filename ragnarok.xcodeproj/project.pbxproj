@@ -169,14 +169,15 @@
 		00D6FA9116BAFAA300B65F81 /* movabletile.png in Resources */ = {isa = PBXBuildFile; fileRef = 00D6FA9016BAFAA300B65F81 /* movabletile.png */; };
 		00D6FAA416BB10B400B65F81 /* CCPanZoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6FAA316BB10B400B65F81 /* CCPanZoomController.m */; };
 		00D6FAAB16BB277100B65F81 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 00D6FAAA16BB277100B65F81 /* Util.m */; };
-		00E7D7C2171D1B6F00D7B5B5 /* CharacterNearest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7C1171D1B6F00D7B5B5 /* CharacterNearest.m */; };
+		00E7D7C2171D1B6F00D7B5B5 /* CharacterNearestCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7C1171D1B6F00D7B5B5 /* CharacterNearestCondition.m */; };
 		00E7D7C5171D1B8500D7B5B5 /* Condition.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7C4171D1B8500D7B5B5 /* Condition.m */; };
-		00E7D7C8171D1BA200D7B5B5 /* CharacterWeakest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7C7171D1BA200D7B5B5 /* CharacterWeakest.m */; };
+		00E7D7C8171D1BA200D7B5B5 /* CharacterWeakestCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7C7171D1BA200D7B5B5 /* CharacterWeakestCondition.m */; };
 		00E7D7CC171D239600D7B5B5 /* DefaultCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7CB171D239600D7B5B5 /* DefaultCondition.m */; };
 		00E7D7CF171D23C700D7B5B5 /* Action.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7CE171D23C700D7B5B5 /* Action.m */; };
-		00E7D7D2171D254200D7B5B5 /* MoveAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7D1171D254200D7B5B5 /* MoveAction.m */; };
+		00E7D7D2171D254200D7B5B5 /* MoveToCharacterAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7D1171D254200D7B5B5 /* MoveToCharacterAction.m */; };
 		00E7D7D5171D26BA00D7B5B5 /* NoAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7D4171D26BA00D7B5B5 /* NoAction.m */; };
 		00E7D7D8171D26C700D7B5B5 /* AttackAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E7D7D7171D26C700D7B5B5 /* AttackAction.m */; };
+		00EA898A171F1C40004387ED /* MoveToPlaceAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EA8989171F1C40004387ED /* MoveToPlaceAction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -501,22 +502,24 @@
 		00D6FAA316BB10B400B65F81 /* CCPanZoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPanZoomController.m; sourceTree = "<group>"; };
 		00D6FAA916BB277100B65F81 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = Utils/Util.h; sourceTree = "<group>"; };
 		00D6FAAA16BB277100B65F81 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Util.m; path = Utils/Util.m; sourceTree = "<group>"; };
-		00E7D7C0171D1B6F00D7B5B5 /* CharacterNearest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterNearest.h; sourceTree = "<group>"; };
-		00E7D7C1171D1B6F00D7B5B5 /* CharacterNearest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterNearest.m; sourceTree = "<group>"; };
+		00E7D7C0171D1B6F00D7B5B5 /* CharacterNearestCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterNearestCondition.h; sourceTree = "<group>"; };
+		00E7D7C1171D1B6F00D7B5B5 /* CharacterNearestCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterNearestCondition.m; sourceTree = "<group>"; };
 		00E7D7C3171D1B8500D7B5B5 /* Condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Condition.h; path = Condition/Condition.h; sourceTree = "<group>"; };
 		00E7D7C4171D1B8500D7B5B5 /* Condition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Condition.m; path = Condition/Condition.m; sourceTree = "<group>"; };
-		00E7D7C6171D1BA200D7B5B5 /* CharacterWeakest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharacterWeakest.h; path = Condition/CharacterWeakest.h; sourceTree = "<group>"; };
-		00E7D7C7171D1BA200D7B5B5 /* CharacterWeakest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharacterWeakest.m; path = Condition/CharacterWeakest.m; sourceTree = "<group>"; };
+		00E7D7C6171D1BA200D7B5B5 /* CharacterWeakestCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharacterWeakestCondition.h; path = Condition/CharacterWeakestCondition.h; sourceTree = "<group>"; };
+		00E7D7C7171D1BA200D7B5B5 /* CharacterWeakestCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharacterWeakestCondition.m; path = Condition/CharacterWeakestCondition.m; sourceTree = "<group>"; };
 		00E7D7CA171D239600D7B5B5 /* DefaultCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultCondition.h; path = Condition/DefaultCondition.h; sourceTree = "<group>"; };
 		00E7D7CB171D239600D7B5B5 /* DefaultCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultCondition.m; path = Condition/DefaultCondition.m; sourceTree = "<group>"; };
 		00E7D7CD171D23C700D7B5B5 /* Action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Action.h; path = Action/Action.h; sourceTree = "<group>"; };
 		00E7D7CE171D23C700D7B5B5 /* Action.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Action.m; path = Action/Action.m; sourceTree = "<group>"; };
-		00E7D7D0171D254100D7B5B5 /* MoveAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoveAction.h; path = Action/MoveAction.h; sourceTree = "<group>"; };
-		00E7D7D1171D254200D7B5B5 /* MoveAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoveAction.m; path = Action/MoveAction.m; sourceTree = "<group>"; };
+		00E7D7D0171D254100D7B5B5 /* MoveToCharacterAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoveToCharacterAction.h; path = Action/MoveToCharacterAction.h; sourceTree = "<group>"; };
+		00E7D7D1171D254200D7B5B5 /* MoveToCharacterAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoveToCharacterAction.m; path = Action/MoveToCharacterAction.m; sourceTree = "<group>"; };
 		00E7D7D3171D26BA00D7B5B5 /* NoAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoAction.h; path = Action/NoAction.h; sourceTree = "<group>"; };
 		00E7D7D4171D26BA00D7B5B5 /* NoAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoAction.m; path = Action/NoAction.m; sourceTree = "<group>"; };
 		00E7D7D6171D26C700D7B5B5 /* AttackAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttackAction.h; path = Action/AttackAction.h; sourceTree = "<group>"; };
 		00E7D7D7171D26C700D7B5B5 /* AttackAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttackAction.m; path = Action/AttackAction.m; sourceTree = "<group>"; };
+		00EA8988171F1C40004387ED /* MoveToPlaceAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoveToPlaceAction.h; path = Action/MoveToPlaceAction.h; sourceTree = "<group>"; };
+		00EA8989171F1C40004387ED /* MoveToPlaceAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoveToPlaceAction.m; path = Action/MoveToPlaceAction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1107,12 +1110,12 @@
 		00E7D7BF171D1AF800D7B5B5 /* Condition */ = {
 			isa = PBXGroup;
 			children = (
-				00E7D7C0171D1B6F00D7B5B5 /* CharacterNearest.h */,
-				00E7D7C1171D1B6F00D7B5B5 /* CharacterNearest.m */,
+				00E7D7C0171D1B6F00D7B5B5 /* CharacterNearestCondition.h */,
+				00E7D7C1171D1B6F00D7B5B5 /* CharacterNearestCondition.m */,
 				00E7D7C3171D1B8500D7B5B5 /* Condition.h */,
 				00E7D7C4171D1B8500D7B5B5 /* Condition.m */,
-				00E7D7C6171D1BA200D7B5B5 /* CharacterWeakest.h */,
-				00E7D7C7171D1BA200D7B5B5 /* CharacterWeakest.m */,
+				00E7D7C6171D1BA200D7B5B5 /* CharacterWeakestCondition.h */,
+				00E7D7C7171D1BA200D7B5B5 /* CharacterWeakestCondition.m */,
 				00E7D7CA171D239600D7B5B5 /* DefaultCondition.h */,
 				00E7D7CB171D239600D7B5B5 /* DefaultCondition.m */,
 			);
@@ -1124,12 +1127,14 @@
 			children = (
 				00E7D7CD171D23C700D7B5B5 /* Action.h */,
 				00E7D7CE171D23C700D7B5B5 /* Action.m */,
-				00E7D7D0171D254100D7B5B5 /* MoveAction.h */,
-				00E7D7D1171D254200D7B5B5 /* MoveAction.m */,
+				00E7D7D0171D254100D7B5B5 /* MoveToCharacterAction.h */,
+				00E7D7D1171D254200D7B5B5 /* MoveToCharacterAction.m */,
 				00E7D7D3171D26BA00D7B5B5 /* NoAction.h */,
 				00E7D7D4171D26BA00D7B5B5 /* NoAction.m */,
 				00E7D7D6171D26C700D7B5B5 /* AttackAction.h */,
 				00E7D7D7171D26C700D7B5B5 /* AttackAction.m */,
+				00EA8988171F1C40004387ED /* MoveToPlaceAction.h */,
+				00EA8989171F1C40004387ED /* MoveToPlaceAction.m */,
 			);
 			name = Action;
 			sourceTree = "<group>";
@@ -1347,14 +1352,15 @@
 				00916898170AA6E6002BFEB9 /* EnemyCharacter.m in Sources */,
 				00B56FEB1712952700C815FC /* MessageLayer.m in Sources */,
 				00B56FEE1712A5F000C815FC /* DialogBox.m in Sources */,
-				00E7D7C2171D1B6F00D7B5B5 /* CharacterNearest.m in Sources */,
+				00E7D7C2171D1B6F00D7B5B5 /* CharacterNearestCondition.m in Sources */,
 				00E7D7C5171D1B8500D7B5B5 /* Condition.m in Sources */,
-				00E7D7C8171D1BA200D7B5B5 /* CharacterWeakest.m in Sources */,
+				00E7D7C8171D1BA200D7B5B5 /* CharacterWeakestCondition.m in Sources */,
 				00E7D7CC171D239600D7B5B5 /* DefaultCondition.m in Sources */,
 				00E7D7CF171D23C700D7B5B5 /* Action.m in Sources */,
-				00E7D7D2171D254200D7B5B5 /* MoveAction.m in Sources */,
+				00E7D7D2171D254200D7B5B5 /* MoveToCharacterAction.m in Sources */,
 				00E7D7D5171D26BA00D7B5B5 /* NoAction.m in Sources */,
 				00E7D7D8171D26C700D7B5B5 /* AttackAction.m in Sources */,
+				00EA898A171F1C40004387ED /* MoveToPlaceAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

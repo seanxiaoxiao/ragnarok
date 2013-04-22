@@ -18,6 +18,5 @@
 
 - (void) doAction:(NSArray *)reachableCharacters;
 
-- (Character *) select:(NSArray *)reachableCharacters;
 
 @end

@@ -8,6 +8,6 @@
 
 #import "Action.h"
 
-@interface MoveAction : Action
+@interface MoveToCharacterAction : Action
 
 @end

@@ -7,7 +7,9 @@
 //
 
 #import "DefaultCondition.h"
-#import "Game.h"
+#import "Character.h"
+#import "Action.h"
+
 
 @implementation DefaultCondition
 
@@ -16,12 +18,12 @@
     return YES;
 }
 
-- (Character *) select:(NSArray *)reachableCharacters
+- (void) doAction:(NSArray *)reachableCharacters
 {
-    if ([[Game sharedGame].homeCharacters count] > 0) {
-        return [[Game sharedGame].homeCharacters objectAtIndex:0];
-    }
-    return nil;
+    Character *dummyOne = [[Character alloc] init];
+    [dummyOne setPosition:2 andRow:2];
+
+    [self.action doActionTo:dummyOne];
 }
 
 @end
