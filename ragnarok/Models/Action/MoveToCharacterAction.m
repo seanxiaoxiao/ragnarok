@@ -7,7 +7,7 @@
 //
 
 #import "Action.h"
-#import "Character.h"
+#import "EnemyCharacter.h"
 #import "MoveToCharacterAction.h"
 #import "Game.h"
 
@@ -15,7 +15,11 @@
 
 - (void)doActionTo: (id)target
 {
-    EnemyCharacter *activeCharacer = [Game sharedGame].activeEnemy;
+    if (target) {
+        EnemyCharacter *activeCharacer = [Game sharedGame].activeEnemy;
+        activeCharacer.isMoving = YES;
+        [activeCharacer moveNearToCol:[target col] andRow:[target row]];
+    }
 }
 
 @end

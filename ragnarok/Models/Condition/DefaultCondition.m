@@ -20,10 +20,7 @@
 
 - (void) doAction:(NSArray *)reachableCharacters
 {
-    Character *dummyOne = [[Character alloc] init];
-    [dummyOne setPosition:2 andRow:2];
-
-    [self.action doActionTo:dummyOne];
+    [self.action doActionTo:nil];
 }
 
 @end

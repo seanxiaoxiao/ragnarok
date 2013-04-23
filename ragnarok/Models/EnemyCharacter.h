@@ -14,8 +14,10 @@
 
 @property (atomic, retain) NSMutableArray *moveConditions;
 @property (atomic, retain) NSMutableArray *attackConditions;
+@property (atomic, assign) BOOL isMoving;
+@property (atomic, assign) BOOL isAttacking;
 
-- (void) moveToCol: (int)col andRow: (int)row;
+- (void) moveNearToCol: (int)col andRow: (int)row;
 
 - (void) moveAction;
 

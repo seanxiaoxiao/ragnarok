@@ -7,12 +7,14 @@
 //
 
 #import "NoAction.h"
+#import "Game.h"
+#import "EnemyCharacter.h"
 
 @implementation NoAction
 
 - (void)doActionTo: (id)target
 {
-    
+
 }
 
 @end

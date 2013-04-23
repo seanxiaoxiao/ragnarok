@@ -65,8 +65,10 @@ Game *sharedGame;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneAttack:) name:EVENT_CHARACTER_DONE_ATTACK object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterCancelAction:) name:EVENT_CHARACTER_CANCEL_ACTION object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(characterDoneCancel:) name:EVENT_CHARACTER_DONE_CANCEL object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enemyNext:) name:EVENT_ENEMY_NEXT object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enemyNext) name:EVENT_ENEMY_NEXT object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enemyMove) name:EVENT_ENEMY_MOVE object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enemyAttack) name:EVENT_ENEMY_ATTACK object:nil];
+
         stage = [[Stage alloc] initWithStageNo:stageNo];
         round = 1;
         phase = homePhase;
@@ -96,15 +98,15 @@ Game *sharedGame;
         
         EnemyCharacter *enemy2 = [[[EnemyCharacter alloc] initWithUnitNo:102] autorelease];
         [enemy2 setPosition:9 andRow:4];
-        enemy2.characterId = 4;
+        enemy2.characterId = 5;
         
         EnemyCharacter *enemy3 = [[[EnemyCharacter alloc] initWithUnitNo:128] autorelease];
         [enemy3 setPosition:11 andRow:12];
-        enemy3.characterId = 4;
+        enemy3.characterId = 6;
         
         EnemyCharacter *enemy4 = [[[EnemyCharacter alloc] initWithUnitNo:132] autorelease];
         [enemy4 setPosition:9 andRow:14];
-        enemy4.characterId = 4;        
+        enemy4.characterId = 7;
         
         [enemyCharacters addObject:enemy1];
         [enemyCharacters addObject:enemy2];
@@ -135,15 +137,15 @@ Game *sharedGame;
         [enemy4.moveConditions addObject:defaultMoveWithNoAction];
         [enemy4.attackConditions addObject:weakestWithAttack];
         
-        [enemy3.moveConditions addObject:nearestWithAttack];
+        [enemy3.moveConditions addObject:nearestWithMove];
         [enemy3.moveConditions addObject:defaultMoveWithNoAction];
         [enemy3.attackConditions addObject:nearestWithAttack];
         
-        [enemy1.moveConditions addObject:nearestWithAttack];
+        [enemy1.moveConditions addObject:nearestWithMove];
         [enemy1.moveConditions addObject:defaultMoveWithNoAction];
         [enemy1.attackConditions addObject:nearestWithAttack];
         
-        [enemy2.moveConditions addObject:nearestWithAttack];
+        [enemy2.moveConditions addObject:nearestWithMove];
         [enemy2.moveConditions addObject:defaultMoveWithMoveToPlace];
         [enemy2.attackConditions addObject:nearestWithAttack];
         
@@ -213,7 +215,12 @@ Game *sharedGame;
     NSNumber *characterId = [notification.userInfo objectForKey:@"CharacterId"];
     Character *character = [self getCharacter:[characterId intValue]];
     [delegate dismissStatus];
-    [delegate showActionMenu:character];
+    if (!character.isEnemy) {
+        [delegate showActionMenu:character];
+    }
+    else {
+        ((EnemyCharacter *)character).isMoving = NO;
+    }
     [character doneMove];
 }
 
@@ -355,21 +362,34 @@ Game *sharedGame;
 - (void)enemyMove
 {
     if (activeEnemy) {
-        [activeEnemy moveAction];
-        NSNotification *notification = [NSNotification notificationWithName:EVENT_ENEMY_ATTACK object:nil userInfo:nil];
-        [[NSNotificationCenter defaultCenter] postNotification:notification];
+        if (activeEnemy.status != DEAD) {
+            [activeEnemy moveAction];
+        }
+        [self performSelector:@selector(enemyDoneMove) withObject:nil afterDelay:2];
     }
+}
+
+- (void)enemyDoneMove
+{
+    NSNotification *notification = [NSNotification notificationWithName:EVENT_ENEMY_ATTACK object:nil userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 - (void)enemyAttack
 {
     if (activeEnemy) {
-        [activeEnemy attackAction];
-        NSNotification *notification = [NSNotification notificationWithName:EVENT_ENEMY_NEXT object:nil userInfo:nil];
-        [[NSNotificationCenter defaultCenter] postNotification:notification];
+        if (activeEnemy.status != DEAD) {
+            [activeEnemy attackAction];
+        }
+        [self performSelector:@selector(enemyDoneAttack) withObject:nil afterDelay:1];
     }
 }
 
+- (void)enemyDoneAttack
+{
+    NSNotification *notification = [NSNotification notificationWithName:EVENT_ENEMY_NEXT object:nil userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+}
 
 - (void)reactivateCharacters
 {

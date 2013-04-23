@@ -16,4 +16,6 @@
 @property (nonatomic, assign) BOOL canMove;
 @property (nonatomic, assign) BOOL used;
 
+- (BOOL)isNextToCol: (int)col andRow: (int)row;
+
 @end

@@ -74,7 +74,6 @@
     }
 }
 
-
 - (void)_addAttackableTiles:(NSMutableArray *)tiles atCol:(int)col andRow:(int)row
 {
     if (row >= 0 && row < width && col >= 0 && col < height) {
@@ -84,7 +83,7 @@
 
 - (NSArray *)reachableCharacters:(Character *)character
 {
-    int maxCount = character.unitCategory.moves;
+    int maxCount = character.unitCategory.moves + 1;
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             cells[i][j].used = NO;
@@ -150,7 +149,7 @@
 {
     Game *game = [Game sharedGame];
     for (Character *character in game.homeCharacters) {
-        if (character.col == col && character.row == row) {
+        if (character.col == col && character.row == row && character.status != DEAD) {
             return NO;
         }
     }
