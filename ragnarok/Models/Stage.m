@@ -96,7 +96,10 @@
 
 - (void)_addReachableCharacter:(NSMutableArray *)characters atCol:(int)col andRow:(int)row withRemain:(int)moveRemain
 {
-    if (row >= 0 && row < width && col >= 0 && col < height && moveRemain >= 0 && cells[col][row].used == NO) {
+    if (row >= 0 && row < width &&
+        col >= 0 && col < height &&
+        moveRemain >= 0 &&
+        cells[col][row].used == NO) {
         cells[col][row].used = YES;
         Character *reachable = [self _characterAtCol:col andRow:row];
         if (reachable != nil) {
@@ -105,6 +108,27 @@
     }
     if (row < 0 || row >= width || col < 0 || col >= height || moveRemain == 0) {
         return;
+    }
+    
+    [self _addReachableCharacter:characters atCol:col andRow:row - 1 withRemain:moveRemain - cells[col][row].moveCost];
+    [self _addReachableCharacter:characters atCol:col andRow:row + 1 withRemain:moveRemain - cells[col][row].moveCost];
+    [self _addReachableCharacter:characters atCol:col - 1 andRow:row withRemain:moveRemain - cells[col][row].moveCost];
+    [self _addReachableCharacter:characters atCol:col + 1 andRow:row withRemain:moveRemain - cells[col][row].moveCost];
+}
+
+
+- (void)_addReachableCharacter2:(NSMutableArray *)characters atCol:(int)col andRow:(int)row withRemain:(int)moveRemain
+{
+    if (row < 0 || row >= width || col < 0 || col >= height || moveRemain == 0) {
+        return;
+    }
+
+    if (moveRemain >= 0 && cells[col][row].used == NO) {
+        cells[col][row].used = YES;
+        Character *reachable = [self _characterAtCol:col andRow:row];
+        if (reachable != nil) {
+            [characters addObject:reachable];
+        }
     }
     
     [self _addReachableCharacter:characters atCol:col andRow:row - 1 withRemain:moveRemain - cells[col][row].moveCost];

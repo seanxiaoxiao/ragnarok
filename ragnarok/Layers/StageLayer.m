@@ -89,7 +89,6 @@
     _controller = [[CCPanZoomController controllerWithNode:self] retain];
     _controller.boundingRect = [backgroundSprite boundingBox];
     _controller.zoomOutLimit = 1;
-//    _controller.zoomInLimit = _controller.optimalZoomOutLimit;
     [_controller enableWithTouchPriority:0 swallowsTouches:NO];
     backgroundSprite.scale = _controller.optimalZoomOutLimit;
 }
@@ -159,9 +158,6 @@
         }], nil]];
 }
 
-- (void) showStatus:(Character *)character
-{
-}
 
 - (void) dismissStatus
 {
